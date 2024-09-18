@@ -79,7 +79,10 @@ private
 
   def times
     @times ||= @node.css('.air-operations-time-status').map do |time|
-      time.text[/\d+:\d+(AM|PM)/]
+      /(?<hour>\d+):(?<min>\d+)(?<ampm>AM|PM)/ =~ time.text
+      hour = Integer(hour)
+      hour += 12 if ampm == 'PM' && hour < 12
+      "#{hour}#{min}".to_i
     end
   end
 
