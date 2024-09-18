@@ -1,0 +1,2 @@
+- Save HTML in files in dir.
+- `ruby run.rb [dir]`
