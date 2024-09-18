@@ -4,8 +4,9 @@ Bundler.require
 require 'csv'
 Dir.glob(__dir__ + '/models/**/*.rb').each(&method(:require))
 
+dir = ARGV.first
 results =
-  Dir.glob(__dir__ + '/html/*.html').flat_map do |file|
+  Dir.glob(dir + '/*.html').flat_map do |file|
     html = File.read(file)
     Result.parse_html(html)
   end
