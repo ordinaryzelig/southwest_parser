@@ -4,13 +4,21 @@ class Result
 
     def parse_html(html)
       doc = Nokogiri.HTML(html, &:noblanks)
-      date = doc.css('.calendar-strip--date').first.text
+      date = parse_date(doc)
       results = doc.css('.search-results--container').first
       rows = results.css('li.air-booking-select-detail')
       rows.filter_map do |row|
         res = new(row, date)
         res unless res.unavailable?
       end
+    end
+
+    def parse_date(doc)
+      doc
+        .css('.calendar-strip--item')
+        .detect { |n| n.children.first['aria-current'] == 'true' }
+        .css('.calendar-strip--date')
+        .text
     end
 
   end
