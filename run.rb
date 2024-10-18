@@ -12,12 +12,7 @@ results =
     Result.parse_all(json)
   end
 
-result_sets =
-  results
-    .group_by(&:ident)
-    .values
-    .map(&ResultSet.method(:new))
-    .sort_by(&:dep_at)
+result_sets = ResultSet.group(results)
 
 csv = CSV.generate do |c|
   c << %w[

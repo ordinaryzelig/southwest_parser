@@ -3,3 +3,4 @@
 - Copy JSON response for https://www.southwest.com/api/air-booking/v1/air-booking/page/air/booking/shopping
 - Save JSON in files in dir.
 - `ruby run.rb [dir]`
+- Paste into Numbers to filter/sort.

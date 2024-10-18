@@ -4,6 +4,18 @@ require 'delegate'
 # Delegate to first result but add methods to get specific price.
 class ResultSet < SimpleDelegator
 
+  class << self
+
+    def group(results)
+      results
+        .group_by(&:ident)
+        .values
+        .map(&method(:new))
+        .sort_by(&:dep_at)
+    end
+
+  end
+
   def initialize(results)
     @results = results
     super results.first
