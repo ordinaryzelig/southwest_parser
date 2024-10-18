@@ -2,13 +2,14 @@ require 'bundler'
 Bundler.require
 
 require 'csv'
+require 'json'
 Dir.glob(__dir__ + '/models/**/*.rb').each(&method(:require))
 
 dir = ARGV.first
 results =
-  Dir.glob(dir + '/*.html').flat_map do |file|
-    html = File.read(file)
-    Result.parse_html(html)
+  Dir.glob(dir + '/*.json').flat_map do |file|
+    json = JSON.parse(File.read(file))
+    Result.parse_all(json)
   end
 
 csv = CSV.generate do |c|
@@ -23,7 +24,6 @@ csv = CSV.generate do |c|
   ]
   results.each do |res|
     c << [
-      res.date_str,
       res.dep_at,
       res.arr_at,
       res.duration,

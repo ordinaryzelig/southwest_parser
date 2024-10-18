@@ -1,2 +1,5 @@
-- Save HTML in files in dir.
+- Go to southwest.com.
+- Search.
+- Copy JSON response for https://www.southwest.com/api/air-booking/v1/air-booking/page/air/booking/shopping
+- Save JSON in files in dir.
 - `ruby run.rb [dir]`

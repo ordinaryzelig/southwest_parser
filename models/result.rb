@@ -2,92 +2,127 @@ class Result
 
   class << self
 
-    def parse_html(html)
-      doc = Nokogiri.HTML(html, &:noblanks)
-      date = parse_date(doc)
-      results = doc.css('.search-results--container').first
-      rows = results.css('li.air-booking-select-detail')
-      rows.filter_map do |row|
-        res = new(row, date)
-        res unless res.unavailable?
-      end
-    end
-
-    def parse_date(doc)
-      doc
-        .css('.calendar-strip--item')
-        .detect { |n| n.children.first['aria-current'] == 'true' }
-        .css('.calendar-strip--date')
-        .text
+    def parse_all(json)
+      json
+        .fetch('data')
+        .fetch('searchResults')
+        .fetch('airProducts')
+        .first
+        .fetch('details')
+        .map(&method(:new))
     end
 
   end
 
-  attr_reader :date_str
-
-  def initialize(node, date_str)
-    @node     = node
-    @date_str = date_str
+  def initialize(json)
+    @json = json
   end
 
   def dep_at
-    @dep_ap ||= times.first
+    @dep_ap ||= DateTime.parse(@json.fetch('departureDateTime'))
   end
 
   def arr_at
-    @arr_at || times.last
+    @arr_ap ||= DateTime.parse(@json.fetch('arrivalDateTime'))
   end
 
   def price
-    @price ||=
-      begin
-        fare = @node.css('.fare-button').detect { |f| f['data-test'] == 'fare-button--wanna-get-away'}
-        points = fare.css('.currency_points .swa-g-screen-reader-only')
-        if points.size > 0
-          str = points.text
-          Integer(str.gsub(/\D/, ''))
-        end
-      end
+    @price ||= fare.price
   end
 
   def unavailable?
-    price.nil?
+    fare.unavailable?
   end
 
   def num_stops
-    @num_stops ||= stops.css('.flight-stops-badge').first.text.to_i
+    flight_numbers.size - 1
   end
 
   def layover_airports
-    @layover_airports ||= stops.css('.select-detail--change-planes').text[/(?<=Change planes ).*/]
+    @layover_airports ||=
+      if num_stops > 0
+        segments[0..-2].map(&:destination_airport_code)
+      else
+        []
+      end
   end
 
   def flight_numbers
-    @flight_numbers ||= @node.css('.flight-numbers--flight-number .actionable--text').text
+    @flight_numbers ||= @json.fetch('flightNumbers')
   end
 
   def duration
-    @duration ||=
-      begin
-        str = @node.css('.select-detail--flight-duration').text
-        hours, mins = str.split.map(&:to_i)
-        (hours * 60) + mins
-      end
+    @duration ||= Integer(@json.fetch('totalDuration'))
+  end
+
+  def fare
+    @fare ||= Fare.new(
+      @json
+        .fetch('fareProducts')
+        .fetch('ADULT')
+        .then { |n| n['WGA'] || n['WGARED'] }
+        .fetch('fare')
+      )
   end
 
 private
 
-  def times
-    @times ||= @node.css('.air-operations-time-status').map do |time|
-      /(?<hour>\d+):(?<min>\d+)(?<ampm>AM|PM)/ =~ time.text
-      hour = Integer(hour)
-      hour += 12 if ampm == 'PM' && hour < 12
-      "#{hour}#{min}".to_i
-    end
+  def segments
+    @segments ||= @json.fetch('segments').map(&Segment.method(:new))
   end
 
-  def stops
-    @stops ||= @node.css('.select-detail--number-of-stops')
+  class Segment
+
+    def initialize(json)
+      @json = json
+    end
+
+    def destination_airport_code
+      @json.fetch('destinationAirportCode')
+    end
+
+  end
+
+  class Fare
+
+    def initialize(json)
+      @json = json
+    end
+
+    def price
+      @json
+        .fetch('baseFare')
+        .then(&Price.method(:new))
+    end
+
+    def available?
+      @json.fetch('availabilityStatus') == 'AVAILABLE'
+    end
+
+    def unavailable?
+      !available?
+    end
+
+  end
+
+  class Price
+
+    def initialize(json)
+      @json = json
+    end
+
+    def value
+      @json.fetch('value')
+    end
+
+    def currency
+      @json.fetch('currencyCode')
+    end
+
+    def to_s
+      "#{value} #{currency}"
+    end
+
   end
 
 end
