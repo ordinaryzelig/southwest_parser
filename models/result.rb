@@ -65,64 +65,17 @@ class Result
       )
   end
 
+  def ident
+    [
+      dep_at,
+      arr_at,
+    ].map(&:to_s).join('|')
+  end
+
 private
 
   def segments
     @segments ||= @json.fetch('segments').map(&Segment.method(:new))
-  end
-
-  class Segment
-
-    def initialize(json)
-      @json = json
-    end
-
-    def destination_airport_code
-      @json.fetch('destinationAirportCode')
-    end
-
-  end
-
-  class Fare
-
-    def initialize(json)
-      @json = json
-    end
-
-    def price
-      @json
-        .fetch('baseFare')
-        .then(&Price.method(:new))
-    end
-
-    def available?
-      @json.fetch('availabilityStatus') == 'AVAILABLE'
-    end
-
-    def unavailable?
-      !available?
-    end
-
-  end
-
-  class Price
-
-    def initialize(json)
-      @json = json
-    end
-
-    def value
-      @json.fetch('value')
-    end
-
-    def currency
-      @json.fetch('currencyCode')
-    end
-
-    def to_s
-      "#{value} #{currency}"
-    end
-
   end
 
 end

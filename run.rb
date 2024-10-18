@@ -12,6 +12,13 @@ results =
     Result.parse_all(json)
   end
 
+result_sets =
+  results
+    .group_by(&:ident)
+    .values
+    .map(&ResultSet.method(:new))
+    .sort_by(&:dep_at)
+
 csv = CSV.generate do |c|
   c << %w[
     date
@@ -20,16 +27,18 @@ csv = CSV.generate do |c|
     duration
     num_stops
     layover_airports
-    price
+    price_in_points
+    price_in_cash
   ]
-  results.each do |res|
+  result_sets.each do |res|
     c << [
       res.dep_at,
       res.arr_at,
       res.duration,
       res.num_stops,
       res.layover_airports,
-      res.price,
+      res.price_in_points,
+      res.price_in_cash,
     ]
   end
 end
