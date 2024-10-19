@@ -12,20 +12,10 @@ export default class extends Controller {
     "flight",
   ]
 
-  maxPointsChanged() {
+  filterFlights() {
     this.flightTargets.forEach(flightEle => {
       var flight = this.flightData(flightEle);
-      var overLimit = flight.fare.points > this.maxPointsTarget.value;
-      flightEle.hidden = overLimit;
-    });
-  }
-
-  maxDepAtChanged() {
-    this.flightTargets.forEach(flightEle => {
-      var flight = this.flightData(flightEle);
-      var hour = (new Date(flight.dep_at)).getUTCHours();
-      var overDepAt = hour > this.maxDepAtTarget.value;
-      flightEle.hidden = overDepAt;
+      flightEle.hidden = this.failsFilters(flight);
     });
   }
 
@@ -33,6 +23,24 @@ export default class extends Controller {
 
   flightData(flightEle) {
     return this.flightsDataValue[flightEle.dataset.id];
+  }
+
+  failsFilters(flight) {
+    if(this.failsMaxPoints(flight)) { return true }
+    if(this.failsDepAt(flight))     { return true }
+  }
+
+  failsMaxPoints(flight) {
+    if(this.maxPointsTarget.value) {
+      return flight.fare.points > this.maxPointsTarget.value
+    }
+  }
+
+  failsDepAt(flight) {
+    if(this.maxDepAtTarget.value) {
+      var hour = (new Date(flight.dep_at)).getUTCHours();
+      return hour > this.maxDepAtTarget.value;
+    }
   }
 
 }
