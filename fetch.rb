@@ -9,16 +9,16 @@ curl 'https://www.southwest.com/api/air-booking/v1/air-booking/page/air/booking/
   -H 'accept-language: en-US,en;q=0.9' \
   -H 'adrum: isAjax:true' \
   -H 'content-type: application/json' \
-  -H 'cookie: swa_FPID=1baea91b-2baa-478f-bcc7-8432e2dc85f2; akaalb_alb_prd_southwest_spa=2147483647~op=PrdSouthwestSpaV1_lb:PrdSouthwestSpaV1|~rv=93~m=PrdSouthwestSpaV1:0|~os=6ebf11227eb877b88e3cfdc68a3ccb6c~id=2dd355b5ae8cc6062f612e44cf78c9e6; at_check=true; AMCVS_65D316D751E563EC0A490D4C%40AdobeOrg=1; _gcl_au=1.1.1459338371.1729283903; _cc=AR%2BraTHDGMhsU6B6hIyPNiVT; _cid_cc=AR%2BraTHDGMhsU6B6hIyPNiVT; s_ecid=MCMID%7C30842930538455691923305271868965195084; AMCV_65D316D751E563EC0A490D4C%40AdobeOrg=179643557%7CMCIDTS%7C20015%7CMCMID%7C30842930538455691923305271868965195084%7CMCAAMLH-1729888702%7C9%7CMCAAMB-1729888702%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1729291102s%7CNONE%7CMCAID%7CNONE%7CvVersion%7C5.5.0; s_cc=true; nmstat=af429810-db06-859c-64f7-d114e26a653c; _mibhv=anon-1729283904697-9519310977_4971; _imp_apg_r_=%7B%22_rt%22%3A%22DQclZ69jgibf8CmquRG%2Bn70wOeCc3SC6wEwExzGyt68%3D%22%7D; _up=1.2.605229068.1729284019; valid_promo=false; akavpau_prd_non_vision=1729290291~id=5049ebc1e1cfc80de5927c1810913cf2; _cc-x=NDE5Y2M5NDMtNjA2MC00ZWYwLWFjOTQtZjA3ODQ2ODhmNWFiOjE3MjkyODk4MzMyMzQ; __ts_xfdF3__=137222312; sRpK_XA_swc=%7B%22c%22%3A%22ZnZocm9MTWJpSkQyY1ZMQg%3D%3DVPZNmJG7qogWmNor1uJ11ThfXv0qOQJd1ccRtHKuRMguXGAuC2PnUwPjeU8lLESfO7fu8WgiMh2wWP0R4TfoRq2gsVHTbhUahVpPqpT_5CHS09cjbs501MY4mF6inppppz8%3D%22%2C%22dc%22%3A%22000%22%2C%22mf%22%3A0%7D; akavpau_prd_rogue_api=1729290465~id=10c3957096038af2ab0f4f03f10587fd; s_sq=swaprod%3D%2526c.%2526a.%2526activitymap.%2526page%253DBOOK%25253AAIR%25253ASelect%252520Flight%252520Page%2526link%253DLog%252520in%252520Opens%252520flyout.%252520Espa%2525C3%2525B1ol%252520DEC%25252030%252520OKC%252520LGAModify%252520Select%252520flights%252520Depart%25253A%252520OKCLGA%252520Oklahoma%252520City%25252C%252520OK%252520-%252520OKC%252520to%252520New%252520York%252520%252528LaGuardia%252529%25252C%2526region%253DBODY%2526pageIDType%253D1%2526.activitymap%2526.a%2526.c; ADRUM=s=1729292107334&r=https%3A%2F%2Fwww.southwest.com%2Fair%2Fbooking%2Fselect-depart.html%3Fhash%3D-608585337; akavpau_prd_air_booking=1729292707~id=51978917f42678185adaea28096e1957; RT="z=1&dm=southwest.com&si=94d7db28-3d04-4b2d-a018-ebada5bb3080&ss=m2faim34&sl=0&tt=0&bcn=%2F%2F17de4c12.akstat.io%2F&ul=1crm6&hd=1crnz"; sRpK8nqm_sc=A6hJWqGSAQAAlsxnMiHAL4JPvKjd2-5bwa4Mn7YHpx0HDPGzMRT0zjF3tJ2kAWOiD0iucqPJwH9eCOfvosJeCA|1|0|99ff20e31d3d6bbdf624a73fc133e85728befa29; mbox=PC#34106990ed8145df8a06aa81c5c675fa.35_0#1792534701|session#fd3b8beccf0d47c783bad012e00e0ccb#1729293968' \
-  -H 'ee30zvqlwf-a: X29VteCG=_sMBJR_OEmxRlJlQ8WgWY8PNEGmWc5ZWqLBPZuHkEvain_N_VsHmJOh9rkwoAogkybeicVu-M7s=b9oF9Ehq7VuzgwEv6FP3UvLghebfJLSajrabkXk5hOnOCT6ABk-j4ZJ9Ql1Dem92qAAcgmoujxDmnh5PtPBcTHR7rJ1kzcyQzgx_aJEAnui85mE9gOL_ah0zHCdhgn7ftVakQsGx_yF707yZF2W=9UdUMGq0uMFd57fzSGLVEl=baPhdN54q894_L8fTAvzV_6eIywUW4I==F-mmk-TT-xUBrPFQD91eY8D34vcTcCcN0y8L6C8aVV6Tl7nkMDdoxfeErbikX3y07=vzctMb6mcu649g1jU5=Q9SFUkbt=h0n3xDd-Ed-WYijV4iFZxhfQa48f-NR4g=lxJsCTPSW93xDMm0td9ZEQbAUVDMOMNNy6Umbn5-FFbLeVAVh=UO31qizs_Z7wrNnnRVfbVJxq3=9JibHoidzuPQndClx8qTZJyxZJWAEiv-xfxeZjF_BHZCv6NynXsORxx5S4feYroheCslVrKzge3fjnj5-EYgohnMl4DOjmgs3_9CGDDDiavC8vBROTRWt56v1dY77XNEZ5Q3AKdRgqXfAwqTxl_Bot1BIIAoRcxE7FHJ6kO80Lny=EvwqDdl70i1OLZbxVlxz1tfvCJw4lODdZ9gDzaJKwQLsr5VV5zh=C-21UwGjiYlbLc7A-ZbmrmzQdq=bh=TOs16CXNWsqAKBNZCFDPPn30H2JzZlLLojH_0qoAa9BDDucwQ=ntb0=MvNfGo97m2kIjZDEQEhIFesnjN_VLiJf=XzLhZhSwZTVgKeW6UJ7rNZcRBtwcLNduDf6l-5LgER6HT5MoIVYTwjJjwTq5BctTm5FPRnYgjqrfaf5WcA8_ushgTjflwd7XrWNiFZG1wFkatEOX6Aoyi3fsHbY4K1_0l96z4Sx17ioaVP-OE4qWkEcHWGf0LxBGDqymzYxsvNzUsjK8CugC55ByYced86ZwOvKzem-2d0bQ59nomIjR2eKDATO=ghmlsAcJ0Kc5QPuXVPGiEyKNfITeqbtMXMb9l2JzZhL4VvlmoWX9Dr7Ej-4dYMUbQxBjiWWJxhTalbIRmFcaELo=LbOHNJgZfBToR_nLb0o0-bDbzERJMJrhoTebLQkMWv6Zm-7ghL-=JmLBhAYKgeSIoNz0XP5_RXK3os1q7WW1UbfGJzdZZj0TF3bizx_fbciADRWQdFkW2jlWK1QO8JAULoQzUEskarN3ET1jPWONWWWYQtjyI31leW1Kjn70OiADry=MkT7PHzocb1n7g9z8Hd6YkWExqcDMz5EqKG4iNZKAd7z5TdTK8VQUaNaWRPKmX15RD2VvbdSjCtAz5Yv6zyimIHF4qQJzb56ZScT1h2iAudaY71T8XmKKdeobyEvBy6acUSzNWf9stLhGhBMNux2K-sZbkoZcPXaYA_VSrsRJI5hv5cMzXQzeI5-RHTre0owy5zbOa_ARmPZ06q9s_iqMJDEb8sUgbK7Sil1LmUKf4hkDPtRAzcKj_fggFi4_x1A8Ue1035hOTw=b03XNWYmfaZ8Vt6kH36o7rfD0IwejELaLoZLZsZfeVfOwZoWHrCtRQjXVGiqVZMNzF2sXVx9T7tw_kYd2GYWvmdYR-9=iLD26IxMXjuEkxTw9xgOTdI9TDnftg5weCo_qOZkyLzzyI0j5DLPSYdXusSjUcQwfTNoMeUG2S=6OyH4=wH5WJUYj-ZlPjVJGa1ImRya=YmavDgBsTQvcC9vQNyXw6WDV-RMuwA9PGU1bYXvVskE_UH3tHVXHnEtLtkew3FnoEk4KtFebZQGE6ggew2MTIUc8INRGg6SJ93b0aQK-r0dSygMDen3DURoeyTJfNBs71zt-wFCmAM5RV9BhecVG7OmF5M1xV9cQ68YtGeb2kT2SDoUQqTk=IsktN4SO7R0dY9=bhD7ZDM-DGaVvKun4AGAX-081RE532mKoFreO4O7L0xa8GSBfVdUi4qB4o8QNCGVUM39BcJEiXqEV0XFm704MW6u0Ck3A1FTI1gZUZAVM6f0xgBNdwY4XtBU7rXAsvus43B2Z3=' \
-  -H 'ee30zvqlwf-b: -e8hjtm' \
-  -H 'ee30zvqlwf-c: AKBh16GSAQAAUUNRZTiTnhSCJSJ_wmr_SWHByQAPmKTa6ogkFTs6HMB8pAZB' \
-  -H 'ee30zvqlwf-d: ADaAhIDBCKGBgQGAAYIQgISigaIAwBGAzPpCxg_33ocx3sD_CAA7OhzAfKQGQQAAAAAn36CjA2WVyi0PNZNtsTbp-wxMYdg' \
-  -H 'ee30zvqlwf-f: A-Z-16GSAQAAcaQUqLD-L2rvk39kFGDaiaI4TNe3dBBlSDjR649eZRk-QIRGAWOiD0iucqPJwH9eCOfvosJeCA==' \
+  -H 'cookie: swa_FPID=1baea91b-2baa-478f-bcc7-8432e2dc85f2; akaalb_alb_prd_southwest_spa=2147483647~op=PrdSouthwestSpaV1_lb:PrdSouthwestSpaV1|~rv=93~m=PrdSouthwestSpaV1:0|~os=6ebf11227eb877b88e3cfdc68a3ccb6c~id=2dd355b5ae8cc6062f612e44cf78c9e6; at_check=true; AMCVS_65D316D751E563EC0A490D4C%40AdobeOrg=1; _gcl_au=1.1.1459338371.1729283903; _cc=AR%2BraTHDGMhsU6B6hIyPNiVT; _cid_cc=AR%2BraTHDGMhsU6B6hIyPNiVT; s_ecid=MCMID%7C30842930538455691923305271868965195084; s_cc=true; nmstat=af429810-db06-859c-64f7-d114e26a653c; _mibhv=anon-1729283904697-9519310977_4971; _imp_apg_r_=%7B%22_rt%22%3A%22DQclZ69jgibf8CmquRG%2Bn70wOeCc3SC6wEwExzGyt68%3D%22%7D; _up=1.2.605229068.1729284019; valid_promo=false; akavpau_prd_non_vision=1729290291~id=5049ebc1e1cfc80de5927c1810913cf2; akavpau_prd_rogue_api=1729290465~id=10c3957096038af2ab0f4f03f10587fd; AMCV_65D316D751E563EC0A490D4C%40AdobeOrg=179643557%7CMCIDTS%7C20015%7CMCMID%7C30842930538455691923305271868965195084%7CMCAAMLH-1729896908%7C9%7CMCAAMB-1729896908%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1729299308s%7CNONE%7CMCAID%7CNONE%7CvVersion%7C5.5.0; _cc-x=YzdlYmZlODQtYWFkMi00NDU5LWExZGYtMzY3ZDNlMDYzNmM0OjE3MjkyOTYyMDkyMTA; __ts_xfdF3__=383071797; sRpK_XA_swc=%7B%22c%22%3A%22UE1OaElMSGtKbGlnNXVsbQ%3D%3DLXBRGR1BboaUkxtu-tRHiByxmg3UNnPTphaIsl0VOjMVCdNGXim0cYJA6FW6r2bspJz8MP18RIISgyFBRi-xsRCG1mvWFuUYtWaz_n5hM_JYsf0wBmX7rhRdJYbbBskg86M%3D%22%2C%22dc%22%3A%22000%22%2C%22mf%22%3A0%7D; s_sq=swaprod%3D%2526c.%2526a.%2526activitymap.%2526page%253DBOOK%25253AAIR%25253ASelect%252520Flight%252520Page%2526link%253DLog%252520in%252520Opens%252520flyout.%252520Espa%2525C3%2525B1ol%252520DEC%25252030%252520OKC%252520LGAModify%252520Select%252520flights%252520Depart%25253A%252520OKCLGA%252520Oklahoma%252520City%25252C%252520OK%252520-%252520OKC%252520to%252520New%252520York%252520%252528LaGuardia%252529%25252C%2526region%253DBODY%2526pageIDType%253D1%2526.activitymap%2526.a%2526.c; ADRUM=s=1729298055495&r=https%3A%2F%2Fwww.southwest.com%2Fair%2Fbooking%2Fselect-depart.html%3Fhash%3D558846938; akavpau_prd_air_booking=1729298655~id=72215401658b45d480c2be75a34d147b; sRpK8nqm_sc=A6hJWqGSAQAAlsxnMiHAL4JPvKjd2-5bwa4Mn7YHpx0HDPGzMRT0zjF3tJ2kAWOiD0iucqPJwH9eCOfvosJeCA|1|0|99ff20e31d3d6bbdf624a73fc133e85728befa29; mbox=PC#34106990ed8145df8a06aa81c5c675fa.35_0#1792541010|session#bf12352bf851458683d5d3052455dc4d#1729299916; RT="z=1&dm=southwest.com&si=94d7db28-3d04-4b2d-a018-ebada5bb3080&ss=m2feba2c&sl=0&tt=0&bcn=%2F%2F17de4c13.akstat.io%2F"' \
+  -H 'ee30zvqlwf-a: rxg95l05VVkvh9CtIGcw2YBiriq-EUyOh6dMqcn8j2jsnggwTDM4K7ndLjFXD2sNin53qCrP60kkHYm8nxY=NnxU8OoDwBmU2ZVT6FM1vu5ER2FRCKXET=AR7u0Kbzvjg=_KEaTyHYO922kln4tbADDux_Msk1Ln=f4ph1WB9kUDdfTQFonTjfDLODfQt0-sHGMIbhNouGcPgIFD5M30mCFtBjeehA3zKqLVeJfcQ5nLjfl6kKqa-B=25WykzW5gIia8iV4QEvh3LwbkTDy-VL1_HPwgHOL8rkwz=GskJ8oqksnsOWbn=gxXx_cafVodZrTkRB=8x3BHJAEfQ_6Q-lLNHerdWY5zPNb=_H5HkvmvdqZvMKDGTTfEG6dGA6DjEZfp1zG9jZTX9=J2tw8jO09T-hgA8K28UU0JGe5EZOc0iYvNaFlHIq7bER0cFzQ5eGFE=kZ0WWopNkdPVkeKptBlXfffp_-hipFEebrPUnbJnf59enpsbrHrt8Z4VFRwALqXj0LdMYZ0hCLw4bKDEHlhkYE=7L8wTu23CVitrMV9HqeuV9dhx0c8aL4-PIsCp7Os3ng1-teL4RjuZEWr251oJ23-24BR5UCRmao4ArMe1nt7aQ6b1d7UjPpfgLwE3caAYFgc68ZMdKq-Xzh0JW5ELWlc7Ia3FwoejW1iWL8=yEACm2MseMtBE9Wqx10pkPLIj6DTvago_Jt-lgWyyNjtvgpoDD3PDg4Jn2RkDjzuRLmUN7T7hAoYq1s=Ik8T_L3-tK56pw3satkw38hsFi3trAbLlPHOpda4eKKquOB47fNoOOqxZOfyJPnzqGGyNtcx3eBfkZtLPweX_9XhTMnriBgchuOkXLBHlsDVGVXjZxXkuBwWppZFTe2yGZnVAnjnCyeGpoWZLBvoT=Jg4piJWJqumUt5UtH7lEBMOz08oNikz==GXZ=FkUuvovvq5UDLJhn9X8g1FppyJnnuaPY5y7mla6z-GxGZ6AhgvPK0W-KwVm_1ocygG5TMYGvfDMFm82hTAlahaLiMrNmcrcELx6_gC4kZEuwgULb9LrupgD-Ka_ZRVshNftWFILQ9AuugjpEGwVN2BedqIFhDBN9O9IO84hTJk=yhJGj0svgj2063BxW2jMf3issZ-R0fQ64OqZjV_e=3fUmAbdgGu4KC3VEJElERY7LTuF-tVKq12K_mZ2A3s-Mo7xWEh3nDKqnWx-s9lGPiQA7f1xsb5O2b8o6KKxrxltdRCegjncrfn1fVPGhHLdR8OWaHIHR=CyKhdAc6zUp6CVoHqyg5YvPrPAYQCtrap-Eq7dBkb_07TNQ8=7oeqAyD_1jYQ4-T---JzaZ-dRtgHhPqj0me9iOD6hl3cI5txKj0UGsV9ygzAw6p=cjeG9BcAYRIBlOIzF5G0p1KzLTeJRzaFFbaYkpdcil8noijxa3eL4I=b1EO6WqqeYZqg-=oIs7crhKbNXcYZTd=5EpaJuI0wBkQ7UdK3hl6u-Vwy00u67CDBvwiCv1rLclv-QXY42PeEJRXQaRJ0L9PM2G-lLZMXZg82gCkasvR8o_NitKvfAHzaDcjdXVUulvk8BFUKRtaGWrgAaVyriqdjHpryA8YZ4sfJx0aT7VhaIAuWEO75lulNjqI9zreaVXvveeNprrWL0LCrQB0joklsl03yjEDgaF8tjRACiM17RU5U5VH-xYPp7Vf5P=RaUofEyKrxcxdn89cRvjLc0TqFH9cTyTExRgcdMXRr6u44GaHnFdQ_=9O6L1qT-1RG-8GcdZ8NugXC7WaCZrZs2QvU7UPElWCCpFTYN1POypUyMXQQZeEKYbKJe5u6nV64yIMfYbNQ0n96jiDV3W1AfjPAMajABzGPJuFEUiN34YavUlF2ZO6P=Wa3FPVcbOkcog6-Ibgzzaafw8ATfq_74-0VDaAD6I80oYpRmnVygoZ-Pc4El0-xUH5tghUO160MffFOzOEa1scLGeIH9HuRbwET=QhQDLKxjZNHEOc1-7zeN0yJ7cVzDt5kv8O_ALVubQ9tPemuDmZArdhEyYFDskPW7ebdrO9ojo=6c7o=hjrdFJAKwJ4' \
+  -H 'ee30zvqlwf-b: tg53nn' \
+  -H 'ee30zvqlwf-c: AEBbLqKSAQAAk9X7wGKHJA99LN_fN0I93HPm3cMcaAN3jPo-01i986LJCGZX' \
+  -H 'ee30zvqlwf-d: ADaAhIDBCKGBgQGAAYIQgISigaIAwBGAzPpCxg_33ocx3sD_CABYvfOiyQhmVwAAAAAn36CjA8DYVUHv6KlnLH4v1HTdkHI' \
+  -H 'ee30zvqlwf-f: AwlCMqKSAQAApOhL-vMyuVMGAxy-D8valnheBGQxcSuRKG1tYLHvwTE1g6EtAWOiD0iucqPJwH9eCOfvosJeCA==' \
   -H 'ee30zvqlwf-z: q' \
   -H 'origin: https://www.southwest.com' \
   -H 'priority: u=1, i' \
-  -H 'referer: https://www.southwest.com/air/booking/select-depart.html?adultPassengersCount=1&departureDate=2024-12-30&departureTimeOfDay=ALL_DAY&destinationAirportCode=LGA&fareType=POINTS&int=LFCBOOKAIR&lapInfantPassengersCount=0&originationAirportCode=OKC&passengerType=ADULT&promoCode=&returnAirportCode=&returnDate=&returnTimeOfDay=ALL_DAY&selectedFlight1=2024-12-31&selectedFlight2=&tripType=oneway' \
+  -H 'referer: https://www.southwest.com/air/booking/select-depart.html?adultPassengersCount=1&departureDate=2024-12-30&departureTimeOfDay=ALL_DAY&destinationAirportCode=LGA&fareType=USD&int=LFCBOOKAIR&lapInfantPassengersCount=0&originationAirportCode=OKC&passengerType=ADULT&promoCode=&returnAirportCode=&returnDate=&returnTimeOfDay=ALL_DAY&selectedFlight1=2024-12-31&selectedFlight2=&tripType=oneway' \
   -H 'sec-ch-ua: "Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"' \
   -H 'sec-ch-ua-mobile: ?0' \
   -H 'sec-ch-ua-platform: "macOS"' \
@@ -30,26 +30,35 @@ curl 'https://www.southwest.com/api/air-booking/v1/air-booking/page/air/booking/
   -H 'x-app-id: air-booking' \
   -H 'x-channel-id: southwest' \
   -H 'x-user-experience-id: 82088716-52b2-4ed3-ad29-a8887fe29a45' \
-  --data-raw '{"adultPassengersCount":"1","departureDate":"%{date}","departureTimeOfDay":"ALL_DAY","destinationAirportCode":"%{arr}","fareType":"%{fare_type}","int":"LFCBOOKAIR","lapInfantPassengersCount":"0","originationAirportCode":"%{dep}","passengerType":"ADULT","promoCode":"","returnAirportCode":"","returnDate":"","returnTimeOfDay":"ALL_DAY","selectedFlight1":"2024-12-31","selectedFlight2":"","tripType":"oneway","application":"air-booking","site":"southwest"}'
+  --data-raw '{"adultPassengersCount":"1","departureDate":"2024-12-30","departureTimeOfDay":"ALL_DAY","destinationAirportCode":"LGA","fareType":"USD","int":"LFCBOOKAIR","lapInfantPassengersCount":"0","originationAirportCode":"OKC","passengerType":"ADULT","promoCode":"","returnAirportCode":"","returnDate":"","returnTimeOfDay":"ALL_DAY","selectedFlight1":"2024-12-31","selectedFlight2":"","tripType":"oneway","application":"air-booking","site":"southwest"}'
 CURL
 
 wait_between_requests = 10
 
-dep = 'OKC'
-arr = 'LGA'
+print 'DEP: '
+dep = gets.chomp.upcase
+
+print 'ARR: '
+arr = gets.chomp.upcase
+
+print 'Earliest date: '
+earliest = Date.parse(gets.chomp)
+
+print "Latest date (#{earliest}): "
+latest = gets.chomp
+latest = latest.empty? ? earliest : Date.parse(latest)
+
 path = Pathname.new('/Users/ningja/Desktop/NYC - HOU/curl')
 dir = FileUtils.mkdir_p(path + "#{dep} - #{arr}").first
 
-earliest = Date.new(2024, 12, 23)
-latest   = Date.new(2024, 12, 31)
 %w[POINTS USD].each do |fare_type|
   (earliest..latest).each do |date|
     curl = curl_template.dup
     replacements = {
-      '%{date}'      => date.to_s,
-      '%{dep}'       => dep,
-      '%{arr}'       => arr,
-      '%{fare_type}' => fare_type,
+      /(?<=originationAirportCode":").*?(?=")/ => dep,
+      /(?<=destinationAirportCode":").*?(?=")/ => arr,
+      /(?<=departureDate":").*?(?=")/          => date.to_s,
+      /(?<=fareType":")\w+/                   => fare_type,
     }
     replacements.each do |k, v|
       curl = curl.sub(k, v)
