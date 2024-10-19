@@ -42,6 +42,7 @@ private
         :available => parsed_fare.available?,
       }
       price = parsed_fare.price
+      next unless price
       fare_atts[price.type] =
         if parsed_fare.available?
           if price.cash?

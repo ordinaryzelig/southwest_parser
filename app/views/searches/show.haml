@@ -38,5 +38,5 @@
           %td= flight.dep_at
           %td= flight.arr_at
           %td= flight.duration
-          %td= flight.fare.points
-          %td= number_to_currency(flight.fare.cash / 100.to_f)
+          %td= flight.fare.points if flight.fare&.points
+          %td= number_to_currency(flight.fare.cash / 100.to_f) if flight.fare&.cash
