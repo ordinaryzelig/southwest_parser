@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dep_at: 2024-10-18 22:39:57
+  arr_at: 2024-10-18 22:39:57
+  duration: 1
+  stops: 1
+  layover_airports: MyString
+
+two:
+  dep_at: 2024-10-18 22:39:57
+  arr_at: 2024-10-18 22:39:57
+  duration: 1
+  stops: 1
+  layover_airports: MyString
