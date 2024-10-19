@@ -18,10 +18,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_034253) do
     t.boolean "available", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flight_id"], name: "index_fares_on_flight_id"
+    t.index ["flight_id"], name: "index_fares_on_flight_id", unique: true
   end
 
   create_table "flights", force: :cascade do |t|
+    t.string "dep", null: false
+    t.string "arr", null: false
     t.datetime "dep_at", null: false
     t.datetime "arr_at", null: false
     t.integer "duration", null: false
@@ -29,6 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_034253) do
     t.string "layover_airports", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["dep", "arr", "dep_at", "arr_at"], name: "index_flights_on_dep_and_arr_and_dep_at_and_arr_at", unique: true
   end
 
   add_foreign_key "fares", "flights"

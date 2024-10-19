@@ -1,4 +1,4 @@
-class Price
+class SearchJsonParser::Price
 
   TYPES = {
     'POINTS' => :points,
@@ -17,7 +17,7 @@ class Price
     @json.fetch('currencyCode')
   end
 
-  def price_type
+  def type
     TYPES.fetch(currency)
   end
 

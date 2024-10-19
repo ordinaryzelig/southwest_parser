@@ -1,0 +1,6 @@
+%h1 Upload Search results
+
+= form_with :url => searches_path do |f|
+  = f.label :json
+  = f.text_area :json
+  = f.submit

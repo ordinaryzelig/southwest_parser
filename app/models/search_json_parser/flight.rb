@@ -1,22 +1,17 @@
-class Result
+class SearchJsonParser::Flight
 
-  class << self
-
-    def parse_all(json)
-      json
-        .fetch('data')
-        .fetch('searchResults')
-        .fetch('airProducts')
-        .first
-        .fetch('details')
-        .map(&method(:new))
-        .each(&:validate!)
-    end
-
-  end
+  attr_accessor :flight_id
 
   def initialize(json)
     @json = json
+  end
+
+  def dep
+    @dep ||= @json.fetch('originationAirportCode')
+  end
+
+  def arr
+    @arr ||= @json.fetch('destinationAirportCode')
   end
 
   def dep_at
@@ -57,7 +52,7 @@ class Result
   end
 
   def fare
-    @fare ||= Fare.new(
+    @fare ||= SearchJsonParser::Fare.new(
       @json
         .fetch('fareProducts')
         .fetch('ADULT')
@@ -84,10 +79,14 @@ class Result
     raise
   end
 
+  def route
+    "#{dep}-#{arr}"
+  end
+
 private
 
   def segments
-    @segments ||= @json.fetch('segments').map(&Segment.method(:new))
+    @segments ||= @json.fetch('segments').map(&SearchJsonParser::Segment.method(:new))
   end
 
 end

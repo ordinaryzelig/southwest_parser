@@ -67,3 +67,4 @@ group :test do
 end
 
 gem 'amazing_print'
+gem "haml-rails", "~> 2.1"

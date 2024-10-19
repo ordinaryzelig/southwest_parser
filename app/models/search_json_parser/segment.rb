@@ -1,4 +1,4 @@
-class Segment
+class SearchJsonParser::Segment
 
   def initialize(json)
     @json = json

@@ -1,4 +1,4 @@
-class Fare
+class SearchJsonParser::Fare
 
   def initialize(json)
     @json = json
@@ -9,7 +9,7 @@ class Fare
     @json
       .fetch('fare')
       .fetch('baseFare')
-      .then(&Price.method(:new))
+      .then(&SearchJsonParser::Price.method(:new))
   rescue
     puts @json
     raise

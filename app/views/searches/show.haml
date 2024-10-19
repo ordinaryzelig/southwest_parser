@@ -1,0 +1,16 @@
+%h1= @route
+
+%table
+  %thead
+    %tr
+      %th Dep
+      %th Arr
+      %th Dep at
+      %th Arr at
+  %tbody
+    - @flights.each do |flight|
+      %tr[flight]
+        %td= flight.dep
+        %td= flight.arr
+        %td= flight.dep_at
+        %td= flight.arr_at
