@@ -13,7 +13,8 @@ export default class extends Controller {
     "minArrAt",
     "maxArrAt",
     "maxDuration",
-    "flight",
+    "flight", // Multiple.
+    "depDate", // Multiple.
   ]
 
   filterFlights() {
@@ -34,6 +35,7 @@ export default class extends Controller {
     if(this.failsDepAt(flight))       { return true; }
     if(this.failsArrAt(flight))       { return true; }
     if(this.failsMaxDuration(flight)) { return true; }
+    if(this.failsDepDate(flight))     { return true; }
   }
 
   failsMaxPoints(flight) {
@@ -65,6 +67,16 @@ export default class extends Controller {
   failsMaxDuration(flight) {
     if(this.maxDurationTarget.value) {
       return flight.duration > this.maxDurationTarget.value;
+    }
+  }
+
+  failsDepDate(flight) {
+    for (const dateTarget of this.depDateTargets) {
+      if(!dateTarget.checked) {
+        var depDateString = /^\d+-\d+-\d+/.exec(flight.dep_at)[0]
+        var exclude = depDateString == dateTarget.value;
+        if(exclude) { return true; }
+      }
     }
   }
 

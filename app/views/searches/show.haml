@@ -2,6 +2,12 @@
 
 .flights{:data => {:controller => 'flights', :flights_flights_data_value => @flights.index_by(&:id).to_json(:include => :fare)}}
 
+  .mb-3.btn-group
+    Departure Date
+    - @flights.map(&:dep_at).map(&:to_date).uniq.sort.each do |date|
+      - input_id = "dep_date_#{date.to_s.underscore}"
+      = check_box_tag input_id, :value => date.to_s, :checked => true, :class => 'btn-check', :data => {:flights_target => 'depDate', :action => 'flights#filterFlights'}
+      = label_tag input_id, date.to_s, :class => 'btn btn-outline-primary'
   .mb-3
     = label_tag :max_points
     = number_field_tag :max_points, nil, :data => {:flights_target => 'maxPoints', :action => 'flights#filterFlights'}
