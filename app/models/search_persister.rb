@@ -42,7 +42,16 @@ private
         :available => parsed_fare.available?,
       }
       price = parsed_fare.price
-      fare_atts[price.type] = parsed_fare.available? ? price.value : nil
+      fare_atts[price.type] =
+        if parsed_fare.available?
+          if price.cash?
+            Integer(BigDecimal(price.value) * 100)
+          else
+            price.value
+          end
+        else
+          nil
+        end.tap(&method(:ap))
       res = Fare.upsert(
         fare_atts,
         :unique_by => :flight_id,

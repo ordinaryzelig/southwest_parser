@@ -25,9 +25,9 @@ class SearchJsonParser::Price
     "#{value} #{currency}"
   end
 
-  TYPES.values.each do |type|
-    define_method "#{type}?" do
-      price_type == type
+  TYPES.values.each do |t|
+    define_method "#{t}?" do
+      type == type
     end
   end
 

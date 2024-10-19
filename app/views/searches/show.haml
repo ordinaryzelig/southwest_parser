@@ -7,6 +7,8 @@
       %th Arr
       %th Dep at
       %th Arr at
+      %th Points
+      %th Cash
   %tbody
     - @flights.each do |flight|
       %tr[flight]
@@ -14,3 +16,5 @@
         %td= flight.arr
         %td= flight.dep_at
         %td= flight.arr_at
+        %td= flight.fare.points
+        %td= flight.fare.cash
