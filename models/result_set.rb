@@ -22,7 +22,7 @@ class ResultSet < SimpleDelegator
   end
 
   def prices
-    @results.map(&:price)
+    @results.filter_map(&:price)
   end
 
   def price_in_cash

@@ -5,9 +5,14 @@ class Fare
   end
 
   def price
+    return nil unless available?
     @json
+      .fetch('fare')
       .fetch('baseFare')
       .then(&Price.method(:new))
+  rescue
+    puts @json
+    raise
   end
 
   def available?

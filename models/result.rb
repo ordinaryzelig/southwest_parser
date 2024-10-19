@@ -10,6 +10,7 @@ class Result
         .first
         .fetch('details')
         .map(&method(:new))
+        .each(&:validate!)
     end
 
   end
@@ -61,7 +62,6 @@ class Result
         .fetch('fareProducts')
         .fetch('ADULT')
         .then { |n| n['WGA'] || n['WGARED'] }
-        .fetch('fare')
       )
   end
 
@@ -70,6 +70,18 @@ class Result
       dep_at,
       arr_at,
     ].map(&:to_s).join('|')
+  end
+
+  def validate!
+    dep_at
+    arr_at
+    duration
+    num_stops
+    layover_airports
+    price
+  rescue
+    puts ident
+    raise
   end
 
 private
