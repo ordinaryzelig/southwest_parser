@@ -9,6 +9,7 @@ export default class extends Controller {
   static targets = [
     "maxPoints",
     "maxDepAt",
+    "minDepAt",
     "flight",
   ]
 
@@ -37,9 +38,12 @@ export default class extends Controller {
   }
 
   failsDepAt(flight) {
+    var hour = (new Date(flight.dep_at)).getUTCHours();
     if(this.maxDepAtTarget.value) {
-      var hour = (new Date(flight.dep_at)).getUTCHours();
       return hour > this.maxDepAtTarget.value;
+    }
+    if(this.minDepAtTarget.value) {
+      return hour < this.minDepAtTarget.value;
     }
   }
 

@@ -6,6 +6,9 @@
     = label_tag :max_points
     = number_field_tag :max_points, nil, :data => {:flights_target => 'maxPoints', :action => 'flights#filterFlights'}
   .mb-3
+    = label_tag :min_dep_at
+    = number_field_tag :min_dep_at, nil, :data => {:flights_target => 'minDepAt', :action => 'flights#filterFlights'}
+  .mb-3
     = label_tag :max_dep_at
     = number_field_tag :max_dep_at, nil, :data => {:flights_target => 'maxDepAt', :action => 'flights#filterFlights'}
 
