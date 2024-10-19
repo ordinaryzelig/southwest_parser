@@ -16,7 +16,6 @@ result_sets = ResultSet.group(results)
 
 csv = CSV.generate do |c|
   c << %w[
-    date
     dep_at
     arr_at
     duration
@@ -31,9 +30,9 @@ csv = CSV.generate do |c|
       res.arr_at,
       res.duration,
       res.num_stops,
-      res.layover_airports,
-      res.price_in_points,
-      res.price_in_cash,
+      res.layover_airports.join(','),
+      res.price_in_points&.value,
+      res.price_in_cash&.value,
     ]
   end
 end
