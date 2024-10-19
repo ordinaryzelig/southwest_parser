@@ -8,8 +8,10 @@ export default class extends Controller {
   }
   static targets = [
     "maxPoints",
-    "maxDepAt",
     "minDepAt",
+    "maxDepAt",
+    "minArrAt",
+    "maxArrAt",
     "flight",
   ]
 
@@ -29,6 +31,7 @@ export default class extends Controller {
   failsFilters(flight) {
     if(this.failsMaxPoints(flight)) { return true }
     if(this.failsDepAt(flight))     { return true }
+    if(this.failsArrAt(flight))     { return true }
   }
 
   failsMaxPoints(flight) {
@@ -40,10 +43,20 @@ export default class extends Controller {
   failsDepAt(flight) {
     var hour = (new Date(flight.dep_at)).getUTCHours();
     if(this.maxDepAtTarget.value) {
-      return hour > this.maxDepAtTarget.value;
+      if(hour > this.maxDepAtTarget.value) { return true }
     }
     if(this.minDepAtTarget.value) {
-      return hour < this.minDepAtTarget.value;
+      if(hour < this.minDepAtTarget.value) { return true }
+    }
+  }
+
+  failsArrAt(flight) {
+    var hour = (new Date(flight.arr_at)).getUTCHours();
+    if(this.maxArrAtTarget.value) {
+      if(hour > this.maxArrAtTarget.value) { return true }
+    }
+    if(this.minArrAtTarget.value) {
+      if(hour < this.minArrAtTarget.value) { return true }
     }
   }
 
