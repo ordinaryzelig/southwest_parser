@@ -10,6 +10,9 @@
       .mb-3
         = label_tag "#{min_max}_#{dep_arr}_at"
         = number_field_tag "#{min_max}_#{dep_arr}_at", nil, :data => {:flights_target => [min_max, dep_arr, 'at'].join('_').camelize(:lower), :action => 'flights#filterFlights'}
+  .mb-3
+    = label_tag :max_duration
+    = number_field_tag :max_duration, nil, :data => {:flights_target => 'maxDuration', :action => 'flights#filterFlights'}
 
   %table.table
     %thead
@@ -18,6 +21,7 @@
         %th Arr
         %th Dep at
         %th Arr at
+        %th Duration
         %th Points
         %th Cash
     %tbody
@@ -27,5 +31,6 @@
           %td= flight.arr
           %td= flight.dep_at
           %td= flight.arr_at
+          %td= flight.duration
           %td= flight.fare.points
           %td= number_to_currency(flight.fare.cash / 100.to_f)

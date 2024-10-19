@@ -12,6 +12,7 @@ export default class extends Controller {
     "maxDepAt",
     "minArrAt",
     "maxArrAt",
+    "maxDuration",
     "flight",
   ]
 
@@ -29,34 +30,41 @@ export default class extends Controller {
   }
 
   failsFilters(flight) {
-    if(this.failsMaxPoints(flight)) { return true }
-    if(this.failsDepAt(flight))     { return true }
-    if(this.failsArrAt(flight))     { return true }
+    if(this.failsMaxPoints(flight))   { return true; }
+    if(this.failsDepAt(flight))       { return true; }
+    if(this.failsArrAt(flight))       { return true; }
+    if(this.failsMaxDuration(flight)) { return true; }
   }
 
   failsMaxPoints(flight) {
     if(this.maxPointsTarget.value) {
-      return flight.fare.points > this.maxPointsTarget.value
+      return flight.fare.points > this.maxPointsTarget.value;
     }
   }
 
   failsDepAt(flight) {
     var hour = (new Date(flight.dep_at)).getUTCHours();
     if(this.maxDepAtTarget.value) {
-      if(hour > this.maxDepAtTarget.value) { return true }
+      if(hour > this.maxDepAtTarget.value) { return true; }
     }
     if(this.minDepAtTarget.value) {
-      if(hour < this.minDepAtTarget.value) { return true }
+      if(hour < this.minDepAtTarget.value) { return true; }
     }
   }
 
   failsArrAt(flight) {
     var hour = (new Date(flight.arr_at)).getUTCHours();
     if(this.maxArrAtTarget.value) {
-      if(hour > this.maxArrAtTarget.value) { return true }
+      if(hour > this.maxArrAtTarget.value) { return true; }
     }
     if(this.minArrAtTarget.value) {
-      if(hour < this.minArrAtTarget.value) { return true }
+      if(hour < this.minArrAtTarget.value) { return true; }
+    }
+  }
+
+  failsMaxDuration(flight) {
+    if(this.maxDurationTarget.value) {
+      return flight.duration > this.maxDurationTarget.value;
     }
   }
 
