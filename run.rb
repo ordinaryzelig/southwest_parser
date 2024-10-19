@@ -26,9 +26,9 @@ csv = CSV.generate do |c|
   ]
   result_sets.each do |res|
     c << [
-      res.dep_at,
-      res.arr_at,
-      res.duration,
+      res.dep_at.strftime('%F %R'),
+      res.arr_at.strftime('%F %R'),
+      res.duration / 60.0 / 24.0,
       res.num_stops,
       res.layover_airports.join(','),
       res.price_in_points&.value,
