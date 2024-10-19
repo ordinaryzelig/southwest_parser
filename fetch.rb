@@ -35,6 +35,9 @@ CURL
 
 wait_between_requests = 10
 
+path = ARGV.first || raise('Missing path arg')
+ARGV.clear # So gets works as expcted.
+
 print 'DEP: '
 dep = gets.chomp.upcase
 
@@ -48,8 +51,8 @@ print "Latest date (#{earliest}): "
 latest = gets.chomp
 latest = latest.empty? ? earliest : Date.parse(latest)
 
-path = Pathname.new('/Users/ningja/Desktop/NYC - HOU/curl')
-dir = FileUtils.mkdir_p(path + "#{dep} - #{arr}").first
+dir = FileUtils.mkdir_p("#{path}/#{dep} - #{arr}").first
+puts dir
 
 %w[POINTS USD].each do |fare_type|
   (earliest..latest).each do |date|
