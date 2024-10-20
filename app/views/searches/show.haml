@@ -23,26 +23,26 @@
   %table.table
     %thead
       %tr
-        %th Dep
-        %th Arr
-        %th Dep at
-        %th Arr at
+        %th Price
+        %th Itenerary
         %th Duration
-        %th Points
-        %th Cash
     %tbody
       - @flights.each do |flight|
         %tr[flight]{:data => {:flights_target => 'flight', :id => flight.id}}
-          %td= flight.dep
-          %td= flight.arr
-          %td= flight.dep_at
-          %td= flight.arr_at
+          %td
+            - if flight.fare&.points
+              %span.points= flight.fare.points
+              - if flight.fare&.cash
+                \|
+                %span.cash= number_to_currency(flight.fare.cash / 100.to_f)
+              = percent_progress_bar(flight.points_percent)
+          %td
+            = flight.dep
+            = flight.dep_at
+            \-
+            = flight.arr_at
+            = flight.arr
           %td
             - dur = ActiveSupport::Duration.build(flight.duration.minutes).parts
             #{dur.fetch(:hours)}h #{dur.fetch(:minutes, 0)}m
             = percent_progress_bar(flight.duration_percent)
-          %td
-            - if flight.fare&.points
-              = flight.fare.points
-              = percent_progress_bar(flight.points_percent)
-          %td= number_to_currency(flight.fare.cash / 100.to_f) if flight.fare&.cash
