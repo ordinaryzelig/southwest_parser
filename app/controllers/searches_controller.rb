@@ -39,7 +39,7 @@ private
     min_duration, max_duration = durations.min, durations.max
     hundred = max_duration - min_duration
     @flights.each do |flight|
-      flight.duration_percent = ((flight.duration - min_duration) / hundred.to_f * 100).round
+      flight.duration_percent = 100 - ((flight.duration - min_duration) / hundred.to_f * 100).round
     end
   end
 
