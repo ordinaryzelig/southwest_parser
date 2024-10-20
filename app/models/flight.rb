@@ -1,6 +1,6 @@
 class Flight < ApplicationRecord
 
-  has_one :fare
+  has_one :fare, :dependent => :destroy
 
   scope :route, -> (r) { where(r.to_h) }
 

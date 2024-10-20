@@ -2,9 +2,11 @@
 
 .flights{:data => {:controller => 'flights', :flights_flights_data_value => @flights.index_by(&:id).to_json(:include => :fare)}}
 
+  - selectable_dates = @flights.map(&:dep_at).map(&:to_date).uniq.sort
+
   .mb-3.btn-group
     Departure Date
-    - @flights.map(&:dep_at).map(&:to_date).uniq.sort.each do |date|
+    - selectable_dates.each do |date|
       - input_id = "dep_date_#{date.to_s.underscore}"
       = check_box_tag input_id, :value => date.to_s, :checked => true, :class => 'btn-check', :data => {:flights_target => 'depDate', :action => 'flights#filterFlights'}
       = label_tag input_id, date.to_s, :class => 'btn btn-outline-primary'
@@ -20,11 +22,15 @@
     = label_tag :max_duration, 'Max duration in hours'
     = number_field_tag :max_duration, nil, :data => {:flights_target => 'maxDuration', :action => 'flights#filterFlights'}
 
-  %table.table.table-hover
+  %table.results.table.table-hover.table-borderless
     %thead
       %tr
         %th Price
-        %th Itenerary
+        %th
+          .row
+            - selectable_dates.each do |date|
+              .col.text-center
+                %strong= date
     %tbody
       - @flights.each do |flight|
         %tr[flight]{:data => {:flights_target => 'flight', :id => flight.id}}
@@ -36,19 +42,25 @@
                 %span.cash= number_to_currency(flight.fare.cash / 100.to_f)
               = percent_progress_bar(flight.points_percent)
           %td
-            .d-flex.justify-content-between
-              .dep
-                .badge.text-bg-secondary= flight.dep
-                = flight.dep_at.strftime('%R')
-              .arr
-                = flight.arr_at.strftime('%R')
-                .badge.text-bg-secondary= flight.arr
-            .progress-stacked.bg-transparent
-              - splits = flight.duration_percentage_splits
-              - splits.each_with_index do |percent, idx|
-                - color = idx == 0 ? 'bg-transparent' : percent_progress_bar_color(flight.duration_percent)
-                .progress{:style => "width: #{percent}%"}
-                  .progress-bar{:class => color}
-                    - if idx == splits.size - 1
-                      - dur = ActiveSupport::Duration.build(flight.duration.minutes).parts
-                      #{dur.fetch(:hours)}h #{dur.fetch(:minutes, 0)}m
+            .row
+              - selectable_dates.each do |date|
+                .date-col
+                  - if date == flight.dep_at.to_date
+                    .d-flex.justify-content-between
+                      .dep
+                        .name= flight.dep
+                        .at= flight.dep_at.strftime('%R')
+                      .arr
+                        .at= flight.arr_at.strftime('%R')
+                        .name= flight.arr
+                    .progress-stacked.bg-transparent
+                      - splits = flight.duration_percentage_splits
+                      - splits.each_with_index do |percent, idx|
+                        - color = idx == 0 ? 'bg-transparent' : percent_progress_bar_color(flight.duration_percent)
+                        .progress{:style => "width: #{percent}%"}
+                          .progress-bar{:class => color}
+                            - if idx == splits.size - 1
+                              - dur = ActiveSupport::Duration.build(flight.duration.minutes).parts
+                              #{dur.fetch(:hours)}h #{dur.fetch(:minutes, 0)}m
+                  - else
+                    &nbsp;
