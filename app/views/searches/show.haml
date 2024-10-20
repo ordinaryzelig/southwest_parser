@@ -37,6 +37,8 @@
           %td= flight.arr
           %td= flight.dep_at
           %td= flight.arr_at
-          %td= flight.duration
+          %td
+            - dur = ActiveSupport::Duration.build(flight.duration.minutes).parts
+            #{dur.fetch(:hours)}h #{dur.fetch(:minutes, 0)}m
           %td= flight.fare.points if flight.fare&.points
           %td= number_to_currency(flight.fare.cash / 100.to_f) if flight.fare&.cash
