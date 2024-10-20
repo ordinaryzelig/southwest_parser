@@ -17,4 +17,12 @@ class Flight < ApplicationRecord
     "#{dep}-#{arr}"
   end
 
+  def airports
+    [
+      dep,
+      *layover_airports.split(','),
+      arr,
+    ]
+  end
+
 end

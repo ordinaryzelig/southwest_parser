@@ -56,7 +56,7 @@ private
           end
         else
           nil
-        end.tap(&method(:ap))
+        end
       res = Fare.upsert(
         fare_atts,
         :unique_by => :flight_id,
