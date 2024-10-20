@@ -28,4 +28,15 @@ class Flight < ApplicationRecord
     ]
   end
 
+  def duration_percent_of_day
+    (duration.minutes.to_f / 1.day.to_f * 100).round
+  end
+
+  def duration_percentage_splits
+    [
+      (dep_at.seconds_since_midnight.to_f / 1.day.seconds.to_f * 100).round,
+      duration_percent_of_day,
+    ]
+  end
+
 end

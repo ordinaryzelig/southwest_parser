@@ -38,11 +38,11 @@ private
   end
 
   def calculations
-    calculate(:duration_percent, :invert, &:duration)
-    calculate(:points_percent,   :invert) { |f| f.fare&.points }
+    calculate(:duration_percent) { |f| f.duration }
+    calculate(:points_percent)   { |f| f.fare&.points }
   end
 
-  def calculate(percent_attr, invert = false, &block)
+  def calculate(percent_attr, &block)
     all = @flights.filter_map(&block)
     min, max = all.min, all.max
     hundred = max - min
@@ -50,7 +50,6 @@ private
       flight_val = block.call(flight)
       if flight_val
         percent = ((flight_val - min) / hundred.to_f * 100).round
-        percent = 100 - percent if invert
         flight.send("#{percent_attr}=", percent)
       end
     end
