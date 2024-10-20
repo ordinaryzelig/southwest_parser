@@ -5,6 +5,7 @@ class Flight < ApplicationRecord
   scope :route, -> (r) { where(r.to_h) }
 
   attr_accessor :duration_percent
+  attr_accessor :points_percent
 
   def generate_ident
     self.ident = [
