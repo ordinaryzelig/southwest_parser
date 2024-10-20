@@ -15,6 +15,7 @@ export default class extends Controller {
     "maxDuration",
     "flight", // Multiple.
     "depDate", // Multiple.
+    "dateCol", // Multiple.
   ]
 
   filterFlights() {
@@ -22,6 +23,16 @@ export default class extends Controller {
       var flight = this.flightData(flightEle);
       flightEle.hidden = this.failsFilters(flight);
     });
+  }
+
+  filterDates() {
+    for (const dateTarget of this.depDateTargets) {
+      this.dateColTargets.forEach(dateColEle => {
+        if(dateColEle.dataset.date == dateTarget.dataset.date) {
+          dateColEle.hidden = !dateTarget.checked;
+        }
+      });
+    }
   }
 
   // Helpers.

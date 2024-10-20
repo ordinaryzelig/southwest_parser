@@ -8,7 +8,7 @@
     Departure Date
     - selectable_dates.each do |date|
       - input_id = "dep_date_#{date.to_s.underscore}"
-      = check_box_tag input_id, :value => date.to_s, :checked => true, :class => 'btn-check', :data => {:flights_target => 'depDate', :action => 'flights#filterFlights'}
+      = check_box_tag input_id, :value => date.to_s, :checked => true, :class => 'btn-check', :data => {:flights_target => 'depDate', :action => 'flights#filterDates flights#filterFlights', :date => date.to_s}
       = label_tag input_id, date.to_s, :class => 'btn btn-outline-primary'
   .mb-3
     = label_tag :max_points, 'Max K-points'
@@ -29,7 +29,7 @@
         %th
           .row
             - selectable_dates.each do |date|
-              .col.text-center
+              .date-col.text-center{:data => {:flights_target => 'dateCol', :date => date}}
                 %strong= date
     %tbody
       - @flights.each do |flight|
@@ -44,7 +44,7 @@
           %td
             .row
               - selectable_dates.each do |date|
-                .date-col
+                .date-col{:data => {:flights_target => 'dateCol', :date => date}}
                   - if date == flight.dep_at.to_date
                     .d-flex.justify-content-between
                       .dep
