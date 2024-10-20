@@ -70,3 +70,4 @@ gem 'amazing_print'
 gem "haml-rails", "~> 2.1"
 gem "dartsass-rails", "~> 0.5.1"
 gem "bootstrap", "~> 5.3"
+gem "faraday", "~> 2.12"
