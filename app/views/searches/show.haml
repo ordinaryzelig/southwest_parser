@@ -9,7 +9,7 @@
       = check_box_tag input_id, :value => date.to_s, :checked => true, :class => 'btn-check', :data => {:flights_target => 'depDate', :action => 'flights#filterFlights'}
       = label_tag input_id, date.to_s, :class => 'btn btn-outline-primary'
   .mb-3
-    = label_tag :max_points
+    = label_tag :max_points, 'Max K-points'
     = number_field_tag :max_points, nil, :data => {:flights_target => 'maxPoints', :action => 'flights#filterFlights'}
   - %i[dep arr].each do |dep_arr|
     - %i[min max].each do |min_max|
@@ -17,7 +17,7 @@
         = label_tag "#{min_max}_#{dep_arr}_at"
         = number_field_tag "#{min_max}_#{dep_arr}_at", nil, :data => {:flights_target => [min_max, dep_arr, 'at'].join('_').camelize(:lower), :action => 'flights#filterFlights'}
   .mb-3
-    = label_tag :max_duration
+    = label_tag :max_duration, 'Max duration in hours'
     = number_field_tag :max_duration, nil, :data => {:flights_target => 'maxDuration', :action => 'flights#filterFlights'}
 
   %table.table.table-hover
