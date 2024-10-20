@@ -18,6 +18,7 @@ class SearchesController < ApplicationController
   def show
     @route = Route.from_string(params[:id])
     @flights = Flight.route(@route)
+    calculations
   end
 
 private
@@ -31,6 +32,15 @@ private
         :dep_on,
         :currency,
       )
+  end
+
+  def calculations
+    durations = @flights.map(&:duration)
+    min_duration, max_duration = durations.min, durations.max
+    hundred = max_duration - min_duration
+    @flights.each do |flight|
+      flight.duration_percent = ((flight.duration - min_duration) / hundred.to_f * 100).round
+    end
   end
 
 end

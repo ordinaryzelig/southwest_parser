@@ -40,5 +40,7 @@
           %td
             - dur = ActiveSupport::Duration.build(flight.duration.minutes).parts
             #{dur.fetch(:hours)}h #{dur.fetch(:minutes, 0)}m
+            .progress
+              .progress-bar{:style => "width: #{flight.duration_percent}%"}
           %td= flight.fare.points if flight.fare&.points
           %td= number_to_currency(flight.fare.cash / 100.to_f) if flight.fare&.cash
