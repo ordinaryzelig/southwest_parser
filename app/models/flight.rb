@@ -13,4 +13,8 @@ class Flight < ApplicationRecord
     ].map(&:to_s).join('|')
   end
 
+  def route
+    "#{dep}-#{arr}"
+  end
+
 end

@@ -1,6 +1,17 @@
 %h1 Upload Search results
 
-= form_with :url => searches_path do |f|
-  = f.label :json
-  = f.text_area :json
-  = f.submit
+= form_with :model => @search do |f|
+  .mb-2
+    = f.label :dep
+    = f.text_field :dep
+  .mb-2
+    = f.label :arr
+    = f.text_field :arr
+  .mb-2
+    = f.label :dep_on
+    = f.date_field :dep_on
+  .mb-2
+    = f.label :currency
+    = f.collection_select :currency, Currency.all, :type, :type
+  .mb-2
+    = f.submit :search

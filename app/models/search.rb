@@ -1,12 +1,17 @@
 class Search
 
-  attr_reader :flights
+  include ActiveModel::Model
 
-  def initialize(dep, arr, dep_on, currency)
-    @dep      = dep
-    @arr      = arr
-    @dep_on   = dep_on
-    @currency = currency
+  attr_reader :flights
+  attr_accessor :dep
+  attr_accessor :arr
+  attr_accessor :dep_on
+  attr_accessor :currency
+
+  def initialize(atts = {})
+    atts.each do |k, v|
+      send "#{k}=", v
+    end
   end
 
   def call
@@ -14,6 +19,20 @@ class Search
     parse_flights
     persist
     @flights = find_all
+  end
+
+  def to_model
+    self
+  end
+
+  %i[dep arr].each do |dep_arr|
+    define_method "#{dep_arr}=" do |v|
+      instance_variable_set :"@#{dep_arr}", v.upcase
+    end
+  end
+
+  def currency=(c)
+    @currency = Currency.new(c)
   end
 
  private
@@ -36,23 +55,30 @@ class Search
   end
 
   def find_all
-    @flights = Flight.find(@persister.flight_ids)
+    Flight.find(@persister.flight_ids)
   end
 
   def conn
     @conn ||= conn = Faraday.new(
       :url => URL,
       :headers => HEADERS,
-    )
+    ) do |f|
+      f.response :logger
+    end
   end
+
+  SW_CURRENCIES = {
+    :points => 'POINTS',
+    :cash   => 'USD',
+  }
 
   def body
     {
       :adultPassengersCount     => "1",
-      :departureDate            => "2024-12-30",
+      :departureDate            => @dep_on.to_s,
       :departureTimeOfDay       => "ALL_DAY",
       :destinationAirportCode   => @arr,
-      :fareType                 => @currency,
+      :fareType                 => SW_CURRENCIES.fetch(@currency.type),
       :int                      => "LFCBOOKAIR",
       :lapInfantPassengersCount => "0",
       :originationAirportCode   => @dep,
@@ -61,7 +87,7 @@ class Search
       :returnAirportCode        => "",
       :returnDate               => "",
       :returnTimeOfDay          => "ALL_DAY",
-      :selectedFlight1          => @dep_on.to_s,
+      :selectedFlight1          => "",
       :selectedFlight2          => "",
       :tripType                 => "oneway",
       :application              => "air-booking",
