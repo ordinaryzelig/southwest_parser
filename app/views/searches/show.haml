@@ -57,7 +57,7 @@
                       - splits = flight.duration_percentage_splits
                       - splits.each_with_index do |percent, idx|
                         - color = idx == 0 ? 'bg-transparent' : percent_progress_bar_color(flight.duration_percent)
-                        .progress{:style => "width: #{percent}%"}
+                        .progress.bg-transparent{:style => "width: #{percent}%"}
                           .progress-bar{:class => color}
                             - if idx == splits.size - 1
                               - dur = ActiveSupport::Duration.build(flight.duration.minutes).parts
