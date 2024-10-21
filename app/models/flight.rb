@@ -2,7 +2,8 @@ class Flight < ApplicationRecord
 
   has_one :fare, :dependent => :destroy
 
-  scope :route, -> (r) { where(r.to_h) }
+  scope :route, -> (route) { where(route.to_h) }
+  scope :dep_date, -> (date) { where("DATE(dep_at) = ?", date) }
 
   attr_accessor :duration_weight_percent
   attr_accessor :points_percent

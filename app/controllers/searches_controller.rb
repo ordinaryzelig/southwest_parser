@@ -1,10 +1,12 @@
 class SearchesController < ApplicationController
 
+  before_action :set_route_from_param, :only => %i[new destroy]
+
   def new
     @search = Search.new(
-      :dep      => 'okc',
-      :arr      => 'lga',
-      :dep_on   => Date.new(2024, 10, 24),
+      :dep      => @route.dep,
+      :arr      => @route.arr,
+      :dep_on   => params.fetch(:date, Date.new(2024, 10, 24)).to_date,
       :currency => :points,
     )
   end
@@ -24,6 +26,14 @@ class SearchesController < ApplicationController
     @calcs = FlightsCalculations.new(@flights).tap(&:call)
   end
 
+  def destroy
+    Flight
+      .route(@route)
+      .dep_date(params[:date])
+      .destroy_all
+    redirect_to search_path(@route)
+  end
+
 private
 
   def search_params
@@ -35,6 +45,10 @@ private
         :dep_on,
         :currency,
       )
+  end
+
+  def set_route_from_param
+    @route = Route.from_string(params[:route])
   end
 
 end
