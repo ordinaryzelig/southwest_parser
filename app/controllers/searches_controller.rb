@@ -21,7 +21,7 @@ class SearchesController < ApplicationController
       Flight
         .route(@route)
         .includes(:fare)
-    calculations
+    @calcs = FlightsCalculations.new(@flights).tap(&:call)
   end
 
 private
@@ -35,24 +35,6 @@ private
         :dep_on,
         :currency,
       )
-  end
-
-  def calculations
-    calculate(:duration_weight_percent) { |f| f.duration }
-    calculate(:points_percent)          { |f| f.fare&.points }
-  end
-
-  def calculate(percent_attr, &block)
-    all = @flights.filter_map(&block)
-    min, max = all.min, all.max
-    hundred = max - min
-    @flights.each do |flight|
-      flight_val = block.call(flight)
-      if flight_val
-        percent = ((flight_val - min) / hundred.to_f * 100).round
-        flight.send("#{percent_attr}=", percent)
-      end
-    end
   end
 
 end

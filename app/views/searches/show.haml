@@ -28,7 +28,7 @@
         .date-col.text-center{:data => {:flights_target => 'dateCol', :date => date}}
           %strong= date
           - @flights.group_by { |f| f.dep_at.to_date }.fetch(date).each do |flight|
-            %div[flight]{:data => {:flights_target => 'flight', :id => flight.id}, :style => "left: 0%; width: #{flight.duration_percent_of_day}%"}
+            %div[flight]{:data => {:flights_target => 'flight', :id => flight.id}, :style => "left: #{flight.offset_duration_percent}%; width: #{flight.duration_percent}%"}
               -#%td
                 -#- if flight.fare&.points
                   -#%span.points= flight.fare.points
