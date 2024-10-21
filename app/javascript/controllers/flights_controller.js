@@ -57,7 +57,7 @@ export default class extends Controller {
   }
 
   failsDepAt(flight) {
-    var hour = (new Date(flight.dep_at)).getUTCHours();
+    var hour = (new Date(flight.dep_at)).getHours();
     if(this.maxDepAtTarget.value) {
       if(hour > this.maxDepAtTarget.value) return true;
     }
@@ -67,7 +67,7 @@ export default class extends Controller {
   }
 
   failsArrAt(flight) {
-    var hour = (new Date(flight.arr_at)).getUTCHours();
+    var hour = (new Date(flight.arr_at)).getHours();
     if(this.maxArrAtTarget.value) {
       if(hour > this.maxArrAtTarget.value) return true;
     }
