@@ -1,6 +1,10 @@
 .flight
+  position: relative
+  @extend .mb-2
   .dep, .arr
     .name
       @extend .badge, .text-bg-light
     .at
-      display: inline
+      @extend .small
+  .duration-line
+    @extend .progress, .justify-content-center // Can't use .text-center because progress is flex.

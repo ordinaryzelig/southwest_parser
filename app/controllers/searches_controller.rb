@@ -38,8 +38,8 @@ private
   end
 
   def calculations
-    calculate(:duration_percent) { |f| f.duration }
-    calculate(:points_percent)   { |f| f.fare&.points }
+    calculate(:duration_weight_percent) { |f| f.duration }
+    calculate(:points_percent)          { |f| f.fare&.points }
   end
 
   def calculate(percent_attr, &block)
