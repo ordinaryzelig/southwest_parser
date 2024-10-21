@@ -29,13 +29,6 @@
           %strong= date
           - @flights.group_by { |f| f.dep_at.to_date }.fetch(date).each do |flight|
             %div[flight]{:data => {:flights_target => 'flight', :id => flight.id}, :style => "left: #{flight.offset_duration_percent}%; width: #{flight.duration_percent}%"}
-              -#%td
-                -#- if flight.fare&.points
-                  -#%span.points= flight.fare.points
-                  -#- if flight.fare&.cash
-                    -#\|
-                    -#%span.cash= number_to_currency(flight.fare.cash / 100.to_f)
-                  -#= percent_progress_bar(flight.points_percent)
               .d-flex.justify-content-between
                 .dep
                   -#.name= flight.dep
@@ -47,3 +40,9 @@
               .duration-line{:class => "text-#{color}"}
                 - dur = ActiveSupport::Duration.build(flight.duration.minutes).parts
                 #{dur.fetch(:hours)}h #{dur.fetch(:minutes, 0)}m
+              - if flight.fare&.points
+                .price{:class => "text-#{percent_progress_bar_color(flight.points_percent)}"}
+                  %span.points= "#{flight.fare.points / 1000}K"
+                  - if flight.fare&.cash
+                    \/
+                    %span.cash= number_to_currency(flight.fare.cash / 100.to_f, :precision => 0)
