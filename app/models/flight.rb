@@ -59,6 +59,10 @@ class Flight < ApplicationRecord
     define_method "#{dep_arr}_at_in_time_zone" do
       send("#{dep_arr}_at").in_time_zone(send("#{dep_arr}_airport").time_zone)
     end
+
+    define_method "#{dep_arr}_at_hour" do
+      send("#{dep_arr}_at_in_time_zone").hour
+    end
   end
 
 end
