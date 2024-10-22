@@ -42,7 +42,7 @@ class Search
       req.body = body
     end
     Rails.logger.debug '***JSON***'
-    Rails.logger.debug JSON.prettey_generate(JSON.parse(@response.body))
+    Rails.logger.debug JSON.pretty_generate(JSON.parse(@response.body))
     Rails.logger.debug '***JSON***'
     raise @response.body unless @response.success?
   end
