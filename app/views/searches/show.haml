@@ -32,7 +32,7 @@
           %strong= date
           .btn-group
             = link_to 'Refresh', [:new, :search, :route => @route, :date => date], :class => 'btn btn-outline-primary'
-            = button_to 'Delete', [:searches, :route => @route, :date => date], :method => :delete, :class => 'btn btn-outline-danger'
+            = button_to 'Delete', [:searches, :route => @route, :date => date], :method => :delete, :class => 'btn btn-outline-danger', :data => {:turbo_confirm => 'Sure?'}
           - @flights.group_by { |f| f.dep_at.to_date }.fetch(date).each do |flight|
             %div[flight]{:data => {:flights_target => 'flight', :id => flight.id}, :style => "left: #{flight.offset_duration_percent}%; width: #{flight.duration_percent}%"}
               .d-flex.justify-content-between
