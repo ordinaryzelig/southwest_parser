@@ -51,4 +51,14 @@ class Flight < ApplicationRecord
     ((dep_minutes_into_day - earliest_dep_minutes_into_day) / minutes_span.to_f * 100).round
   end
 
+  %i[dep arr].each do |dep_arr|
+    define_method "#{dep_arr}_airport" do
+      Airport.new(send(dep_arr))
+    end
+
+    define_method "#{dep_arr}_at_in_time_zone" do
+      send("#{dep_arr}_at").in_time_zone(send("#{dep_arr}_airport").time_zone)
+    end
+  end
+
 end

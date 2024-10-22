@@ -1,6 +1,6 @@
 %h1= @route
 
-.flights{:data => {:controller => 'flights', :flights_flights_data_value => @flights.index_by(&:id).to_json(:include => :fare)}}
+.flights{:data => {:controller => 'flights', :flights_flights_data_value => @flights.index_by(&:id).to_json(:include => [:fare])}}
 
   - selectable_dates = @flights.map(&:dep_at).map(&:to_date).uniq.sort
 
@@ -35,10 +35,10 @@
               .d-flex.justify-content-between
                 .dep
                   -#.name= flight.dep
-                  .at= flight.dep_at.strftime('%R')
+                  .at= flight.dep_at_in_time_zone.strftime('%R')
                 .arr
                   -#.name= flight.arr
-                  .at= flight.arr_at.strftime('%R')
+                  .at= flight.arr_at_in_time_zone.strftime('%R')
               - color = percent_progress_bar_color(flight.duration_weight_percent)
               .duration-line{:class => "text-#{color}"}
                 - dur = ActiveSupport::Duration.build(flight.duration.minutes).parts
