@@ -13,6 +13,7 @@ export default class extends Controller {
     "minArrAt",
     "maxArrAt",
     "maxDuration",
+    "stops",
     "flight", // Multiple.
     "depDate", // Multiple.
     "dateCol", // Multiple.
@@ -47,6 +48,7 @@ export default class extends Controller {
     if(this.failsArrAt(flight))       return true;
     if(this.failsMaxDuration(flight)) return true;
     if(this.failsDepDate(flight))     return true;
+    if(this.failsStops(flight))       return true;
   }
 
   failsMaxPoints(flight) {
@@ -89,6 +91,12 @@ export default class extends Controller {
         var exclude = depDateString == dateTarget.value;
         if(exclude) { return true; }
       }
+    }
+  }
+
+  failsStops(flight) {
+    if(this.stopsTarget.value) {
+      return flight.stops > this.stopsTarget.value;
     }
   }
 

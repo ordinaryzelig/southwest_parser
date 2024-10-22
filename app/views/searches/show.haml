@@ -14,6 +14,9 @@
     = label_tag :max_duration, 'Max duration in hours'
     = number_field_tag :max_duration, nil, :data => {:flights_target => 'maxDuration', :action => 'flights#filterFlights'}, :placeholder => "Avg: #{@flights.map(&:duration).sum / @flights.size / 60}h"
   .mb-3
+    = label_tag :stops, 'Stops'
+    = number_field_tag :stops, nil, :data => {:flights_target => 'stops', :action => 'flights#filterFlights'}
+  .mb-3
     = label_tag :max_points, 'Max K-points'
     = number_field_tag :max_points, nil, :data => {:flights_target => 'maxPoints', :action => 'flights#filterFlights'}, :placeholder => "Avg: #{@flights.filter_map { |f| f.fare&.points }.sum / @flights.size / 1000}K"
   - %i[dep arr].each do |dep_arr|
