@@ -25,7 +25,7 @@ private
         :arr_at           => parsed_flight.arr_at,
         :duration         => parsed_flight.duration,
         :stops            => parsed_flight.num_stops,
-        :layover_airports => parsed_flight.layover_airports.join(',')
+        :layover_airports => parsed_flight.layover_airports.join(',').presence
       }
       @flights_upsert_res =
         Flight.upsert(
