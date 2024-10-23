@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import * as bootstrap from "bootstrap"
 
 // Connects to data-controller="flights"
 export default class extends Controller {
@@ -18,6 +19,10 @@ export default class extends Controller {
     "depDate", // Multiple.
     "dateCol", // Multiple.
   ]
+
+  connect() {
+    this.initTooltips()
+  }
 
   filterFlights() {
     this.flightTargets.forEach(flightEle => {
@@ -98,6 +103,11 @@ export default class extends Controller {
     if(this.stopsTarget.value) {
       return flight.stops > this.stopsTarget.value;
     }
+  }
+
+  initTooltips() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   }
 
 }
