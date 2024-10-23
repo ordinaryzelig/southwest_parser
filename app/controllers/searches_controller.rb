@@ -48,7 +48,7 @@ private
   end
 
   def set_route_from_param
-    @route = Route.from_string(params[:route])
+    @route = Route.from_string(params[:route] || 'OKC-LGA')
   end
 
 end
