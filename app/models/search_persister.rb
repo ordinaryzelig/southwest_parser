@@ -30,8 +30,9 @@ private
       @flights_upsert_res =
         Flight.upsert(
           flight_atts,
-          :returning => :id,
-          :unique_by => %i[dep arr dep_at arr_at],
+          :returning         => :id,
+          :unique_by         => %i[dep arr dep_at arr_at],
+          :record_timestamps => true,
         )
       flight_id = @flights_upsert_res.first.fetch('id')
       parsed_flight.flight_id = flight_id
@@ -59,7 +60,8 @@ private
         end
       res = Fare.upsert(
         fare_atts,
-        :unique_by => :flight_id,
+        :unique_by         => :flight_id,
+        :record_timestamps => true,
       )
     end
   end
