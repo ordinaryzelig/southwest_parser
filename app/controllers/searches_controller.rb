@@ -27,10 +27,10 @@ class SearchesController < ApplicationController
   end
 
   def destroy
-    #Flight
-      #.route(@route)
-      #.dep_date(params[:date])
-      #.destroy_all
+    Flight
+      .route(@route)
+      .dep_date(params[:date])
+      .destroy_all
     redirect_to search_path(@route)
   end
 
