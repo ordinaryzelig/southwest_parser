@@ -29,7 +29,7 @@ class SearchesController < ApplicationController
   def destroy
     Flight
       .route(@route)
-      .dep_date(params[:date])
+      .dep_date(params[:date]) # NOTE This is wrong because of time zone.
       .destroy_all
     redirect_to search_path(@route)
   end
