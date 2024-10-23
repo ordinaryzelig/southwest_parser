@@ -1,0 +1,20 @@
+%p.fs-6
+  = flight.dep_at_in_time_zone.strftime('%R')
+  \-
+  = flight.arr_at_in_time_zone.strftime('%R')
+  %br
+  Dur: #{duration_in_words flight.duration}
+  %br
+  Stops: #{flight.layover_airports.presence || 0}
+  - if flight.fare
+    %br
+    #{number_with_delimiter flight.fare.points} points
+    - if flight.fare.cash
+      %br
+      #{number_to_currency(flight.fare.cash / 100.to_f, :precision => 0)}
+%p.fs-6
+  ID #{flight.id}
+  %br
+  c: #{flight.created_at}
+  %br
+  u: #{flight.updated_at}
