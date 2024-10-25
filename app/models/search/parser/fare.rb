@@ -8,7 +8,7 @@ class Search::Parser::Fare
     return nil unless available?
     @json
       .fetch('fare')
-      .fetch('baseFare')
+      .fetch('totalFare')
       .then(&Search::Parser::Price.method(:new))
   rescue
     puts @json
