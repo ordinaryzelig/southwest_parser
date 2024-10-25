@@ -50,7 +50,7 @@ class Search
   end
 
   def persist
-    @persister = SearchPersister.new(@parsed_flights)
+    @persister = Search::Persister.new(@parsed_flights)
     @persister.call
   end
 

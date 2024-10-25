@@ -1,4 +1,4 @@
-class SearchPersister
+class Search::Persister
 
   attr_reader :flight_ids
 
