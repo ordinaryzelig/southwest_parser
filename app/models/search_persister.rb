@@ -48,12 +48,12 @@ private
       }
       price = parsed_fare.price
       next unless price
-      fare_atts[price.type] =
+      fare_atts[price.type.tap(&method(:ap))] =
         if parsed_fare.available?
           if price.cash?
             Integer(BigDecimal(price.value) * 100)
           else
-            price.value
+            price.value.tap(&method(:ap))
           end
         else
           nil

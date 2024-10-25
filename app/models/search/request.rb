@@ -14,7 +14,7 @@ class Search::Request
       req.body = body
     end
     json = JSON.pretty_generate(JSON.parse(@response.body))
-    File.open(Rails.root + "log/searches/#{Time.now}.json", 'w') { |f| f.write json }
+    File.open(Rails.root + "log/searches/#{Time.now}_#{@dep}_#{@arr}_#{@currency}.json", 'w') { |f| f.write json }
     raise @response.body unless @response.success?
     @response
   end

@@ -1,4 +1,4 @@
-class SearchJsonParser::Price
+class Search::Parser::Price
 
   TYPES = {
     'POINTS' => :points,

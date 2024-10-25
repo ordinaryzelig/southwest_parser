@@ -46,7 +46,7 @@ class Search
   def parse_flights
     json = JSON.load(@response.body)
     #puts JSON.pretty_generate(json)
-    @parsed_flights = SearchJsonParser.parse_all(json)
+    @parsed_flights = Search::Parser.parse_all(json)
   end
 
   def persist

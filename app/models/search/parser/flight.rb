@@ -1,4 +1,4 @@
-class SearchJsonParser::Flight
+class Search::Parser::Flight
 
   attr_accessor :flight_id
 
@@ -52,7 +52,7 @@ class SearchJsonParser::Flight
   end
 
   def fare
-    @fare ||= SearchJsonParser::Fare.new(
+    @fare ||= Search::Parser::Fare.new(
       @json
         .fetch('fareProducts')
         .fetch('ADULT')
@@ -86,7 +86,7 @@ class SearchJsonParser::Flight
 private
 
   def segments
-    @segments ||= @json.fetch('segments').map(&SearchJsonParser::Segment.method(:new))
+    @segments ||= @json.fetch('segments').map(&Search::Parser::Segment.method(:new))
   end
 
 end
