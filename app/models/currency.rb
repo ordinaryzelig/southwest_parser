@@ -20,4 +20,8 @@ class Currency
     raise unless TYPES.include?(@type)
   end
 
+  def inspect
+    @type
+  end
+
 end
