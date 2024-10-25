@@ -41,9 +41,8 @@ class Search
     @response = conn.post do |req|
       req.body = body
     end
-    Rails.logger.debug '***JSON***'
-    Rails.logger.debug JSON.pretty_generate(JSON.parse(@response.body))
-    Rails.logger.debug '***JSON***'
+    json = JSON.pretty_generate(JSON.parse(@response.body))
+    File.open(Rails.root + "log/searches/#{Time.now}.json", 'w') { |f| f.write json }
     raise @response.body unless @response.success?
   end
 
