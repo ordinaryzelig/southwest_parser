@@ -46,18 +46,22 @@ private
         :flight_id => parsed_flight.flight_id,
         :available => parsed_fare.available?,
       }
-      price = parsed_fare.price
-      next unless price
-      fare_atts[price.type.tap(&method(:ap))] =
-        if parsed_fare.available?
-          if price.cash?
+      if parsed_fare.available?
+        price = parsed_fare.price
+        fare_atts[price.type] =
+          case price.type
+          when :cash
             Integer(BigDecimal(price.value) * 100)
+          when :points
+            price.value
           else
-            price.value.tap(&method(:ap))
+            raise "Unknown price type: #{price.type}"
           end
-        else
-          nil
-        end
+      else
+        # Assuming that if one isn't available, neither is the other.
+        fare_atts[:points] = nil
+        fare_atts[:cash]   = nil
+      end
       res = Fare.upsert(
         fare_atts,
         :unique_by         => :flight_id,
