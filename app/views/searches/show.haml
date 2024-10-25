@@ -46,7 +46,10 @@
               .duration-line{:class => "text-#{color}", :data => {:bs_toggle => 'tooltip'}, :title => render('searches/flight_tooltip', :flight => flight)}= duration_in_words(flight.duration)
               - if flight.fare&.points
                 .price{:class => "text-#{percent_progress_bar_color(flight.points_percent)}"}
-                  %span.points= "#{flight.fare.points / 1000}K"
+                  %span.points= "#{flight.fare.kpoints}K"
                   - if flight.fare&.cash
                     \/
                     %span.cash= number_to_currency(flight.fare.cash / 100.to_f, :precision => 0)
+                    - if flight.fare.point_value
+                      \/
+                      = flight.fare.point_value

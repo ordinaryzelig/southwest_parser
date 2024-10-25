@@ -12,6 +12,10 @@
     - if flight.fare.cash
       %br
       #{number_to_currency(flight.fare.cash / 100.to_f, :precision => 0)}
+      - if flight.fare.point_value
+        %br
+        Pt. val
+        = flight.fare.point_value
 %p.fs-6
   ID #{flight.id}
   %br
