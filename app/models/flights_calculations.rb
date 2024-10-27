@@ -36,8 +36,18 @@ class FlightsCalculations
     end
   end
 
+  %i[min max].each do |min_max|
+    define_method "kpoints_#{min_max}" do
+      (@flights.filter_map { |f| f.fare&.points }.send(min_max) / 1000.to_f).ceil
+    end
+  end
+
   def duration_average
     @flights.map(&:duration).sum / @flights.size / 60
+  end
+
+  def points_average
+    (@flights.filter_map { |f| f.fare&.points }.sum / @flights.size).round
   end
 
 private

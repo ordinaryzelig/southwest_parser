@@ -70,6 +70,10 @@ private
         :min => @calcs.stops_min,
         :max => @calcs.stops_max,
       },
+      :kpoints => {
+        :min => @calcs.kpoints_min,
+        :max => @calcs.kpoints_max,
+      },
     }
   end
 

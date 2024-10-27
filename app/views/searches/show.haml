@@ -19,13 +19,14 @@
     = number_field_tag :stops, @filter_settings.fetch(:stops).fetch(:max), :data => {:flights_target => 'stops', :action => 'flights#filterFlights'}, **@filter_settings.fetch(:stops)
   .mb-3
     = label_tag :max_points, 'Max K-points'
-    = number_field_tag :max_points, nil, :data => {:flights_target => 'maxPoints', :action => 'flights#filterFlights'}, :placeholder => "Avg: #{@flights.filter_map { |f| f.fare&.points }.sum / @flights.size / 1000}K"
+    = number_field_tag :max_points, @filter_settings.fetch(:kpoints).fetch(:max), :data => {:flights_target => 'maxPoints', :action => 'flights#filterFlights'}, **@filter_settings.fetch(:kpoints)
+    Avg: #{number_with_delimiter @calcs.points_average}
   - %i[dep arr].each do |dep_arr|
     .mb-3
       = dep_arr.to_s.titleize
       - %i[min max].each do |min_max|
         = label_tag "#{min_max}_#{dep_arr}_at", min_max
-        = number_field_tag "#{min_max}_#{dep_arr}_at", @filter_settings.fetch(dep_arr).fetch(min_max), :data => {:flights_target => [min_max, dep_arr, 'at'].join('_').camelize(:lower), :action => 'flights#filterFlights'}, **@filter_settings.fetch(:dep)
+        = number_field_tag "#{min_max}_#{dep_arr}_at", @filter_settings.fetch(dep_arr).fetch(min_max), :data => {:flights_target => [min_max, dep_arr, 'at'].join('_').camelize(:lower), :action => 'flights#filterFlights'}, **@filter_settings.fetch(dep_arr)
 
   .results
     .row
