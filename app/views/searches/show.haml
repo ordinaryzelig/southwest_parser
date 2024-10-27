@@ -12,7 +12,8 @@
       = label_tag input_id, date.to_s, :class => 'btn btn-outline-primary'
   .mb-3
     = label_tag :max_duration, 'Max duration in hours'
-    = number_field_tag :max_duration, nil, :data => {:flights_target => 'maxDuration', :action => 'flights#filterFlights'}, :placeholder => "Avg: #{@flights.map(&:duration).sum / @flights.size / 60}h"
+    = number_field_tag :max_duration, @filter_settings.fetch(:duration).fetch(:max), :data => {:flights_target => 'maxDuration', :action => 'flights#filterFlights'}, **@filter_settings.fetch(:duration)
+    Avg: #{@calcs.duration_average}h
   .mb-3
     = label_tag :stops, 'Stops'
     = number_field_tag :stops, nil, :data => {:flights_target => 'stops', :action => 'flights#filterFlights'}

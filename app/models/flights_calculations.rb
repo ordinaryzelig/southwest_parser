@@ -24,6 +24,16 @@ class FlightsCalculations
     end
   end
 
+  %i[min max].each do |min_max|
+    define_method "duration_#{min_max}" do
+      (@flights.map(&:duration).send(min_max) / 60.to_f).ceil
+    end
+  end
+
+  def duration_average
+    @flights.map(&:duration).sum / @flights.size / 60
+  end
+
 private
 
   def calculate(percent_attr, &block)
