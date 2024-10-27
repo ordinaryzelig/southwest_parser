@@ -7,10 +7,21 @@ class FlightsCalculations
   def call
     @flights.each do |f|
       f.minutes_span = minutes_span
-      f.earliest_dep_minutes_into_day = earliest_dep_minutes_into_day
+      f.earliest_dep_minutes_into_day = dep_min
     end
     calculate(:duration_weight_percent) { |f| f.duration }
     calculate(:points_percent)          { |f| f.fare&.points }
+  end
+
+  %i[dep arr].each do |dep_arr|
+    %i[min max].each do |min_max|
+      meth = "#{dep_arr}_#{min_max}"
+      define_method meth do
+        ivar = "@#{meth}"
+        instance_variable_get ivar or
+          instance_variable_set ivar, @flights.map(&:"#{dep_arr}_minutes_into_day").send(min_max) / 60
+      end
+    end
   end
 
 private
@@ -28,10 +39,6 @@ private
     end
   end
 
-  def earliest_dep_minutes_into_day
-    @earliest_dep_at ||= @flights.map(&:dep_minutes_into_day).min
-  end
-
   def latest_arr_minutes_into_day
     @latest_arr_at ||= @flights.map(&:arr_minutes_into_day).max
   end
@@ -39,7 +46,7 @@ private
   # Minutes between earliest dep_at and latest arr_at.
   # Represents largest window so that any flight would fully fit.
   def minutes_span
-    @minutes_span ||= latest_arr_minutes_into_day - earliest_dep_minutes_into_day
+    @minutes_span ||= latest_arr_minutes_into_day - dep_min
   end
 
 end

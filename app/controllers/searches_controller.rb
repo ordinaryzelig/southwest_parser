@@ -24,6 +24,7 @@ class SearchesController < ApplicationController
         .route(@route)
         .includes(:fare)
     @calcs = FlightsCalculations.new(@flights).tap(&:call)
+    set_filter_settings
   end
 
   def destroy
@@ -49,6 +50,19 @@ private
 
   def set_route_from_param
     @route = Route.from_string(params[:route] || 'OKC-LGA')
+  end
+
+  def set_filter_settings
+    @filter_settings = {
+      :dep => {
+        :min => @calcs.dep_min,
+        :max => @calcs.dep_max,
+      },
+      :arr => {
+        :min => @calcs.arr_min,
+        :max => @calcs.arr_max,
+      },
+    }
   end
 
 end
