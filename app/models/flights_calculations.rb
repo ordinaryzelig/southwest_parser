@@ -30,6 +30,12 @@ class FlightsCalculations
     end
   end
 
+  %i[min max].each do |min_max|
+    define_method "stops_#{min_max}" do
+      @flights.map(&:stops).send(min_max)
+    end
+  end
+
   def duration_average
     @flights.map(&:duration).sum / @flights.size / 60
   end

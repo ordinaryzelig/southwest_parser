@@ -16,7 +16,7 @@
     Avg: #{@calcs.duration_average}h
   .mb-3
     = label_tag :stops, 'Stops'
-    = number_field_tag :stops, nil, :data => {:flights_target => 'stops', :action => 'flights#filterFlights'}
+    = number_field_tag :stops, @filter_settings.fetch(:stops).fetch(:max), :data => {:flights_target => 'stops', :action => 'flights#filterFlights'}, **@filter_settings.fetch(:stops)
   .mb-3
     = label_tag :max_points, 'Max K-points'
     = number_field_tag :max_points, nil, :data => {:flights_target => 'maxPoints', :action => 'flights#filterFlights'}, :placeholder => "Avg: #{@flights.filter_map { |f| f.fare&.points }.sum / @flights.size / 1000}K"

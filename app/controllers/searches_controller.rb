@@ -66,6 +66,10 @@ private
         :min => @calcs.duration_min,
         :max => @calcs.duration_max,
       },
+      :stops => {
+        :min => @calcs.stops_min,
+        :max => @calcs.stops_max,
+      },
     }
   end
 
