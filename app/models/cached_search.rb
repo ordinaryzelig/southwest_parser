@@ -32,6 +32,10 @@ class CachedSearch
     @dep_on ||= filename_parts[2]
   end
 
+  def created_on
+    @created_at ||= filename_parts[0].to_date
+  end
+
 private
 
   def filename_parts

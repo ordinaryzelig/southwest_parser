@@ -32,7 +32,7 @@
     .row
       - selectable_dates.each do |date|
         .date-col.text-center{:data => {:flights_target => 'dateCol', :date => date}}
-          %strong= date
+          %strong{:data => {:bs_toggle => 'tooltip'}, :title => "Updated #{last_searched(@route, date) || '?'}"}= date
           .small= date.strftime('%A')
           .btn-group
             = link_to 'Refresh', [:new, :search, :route => @route, :date => date], :class => 'btn btn-outline-primary'
