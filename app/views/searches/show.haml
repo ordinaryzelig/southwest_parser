@@ -33,6 +33,7 @@
       - selectable_dates.each do |date|
         .date-col.text-center{:data => {:flights_target => 'dateCol', :date => date}}
           %strong= date
+          .small= date.strftime('%A')
           .btn-group
             = link_to 'Refresh', [:new, :search, :route => @route, :date => date], :class => 'btn btn-outline-primary'
             = button_to 'Delete', [:searches, :route => @route, :date => date], :method => :delete, :class => 'btn btn-outline-danger', :data => {:turbo_confirm => 'Sure?'}
