@@ -24,4 +24,8 @@ class Currency
     @type
   end
 
+  def to_s
+    @type.to_s
+  end
+
 end
