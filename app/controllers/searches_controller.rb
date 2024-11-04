@@ -35,6 +35,12 @@ class SearchesController < ApplicationController
     redirect_to search_path(@route)
   end
 
+  def load_cached
+    cached_search = CachedSearch.new(params[:path])
+    cached_search.load
+    redirect_to search_path(cached_search.route)
+  end
+
 private
 
   def search_params
@@ -76,5 +82,13 @@ private
       },
     }
   end
+
+  def cached_searches
+    @cached_searches ||= CachedSearch.where(
+      :route => params[:route],
+      :date  => params[:date],
+    )
+  end
+  helper_method :cached_searches
 
 end

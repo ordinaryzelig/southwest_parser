@@ -15,3 +15,9 @@
     = f.collection_select :currency, Currency.all, :type, :type
   .mb-2
     = f.submit :search
+
+- if cached_searches.any?
+  %h3 Cached
+  %ul.list-unstyled
+    - cached_searches.each do |cached_search|
+      %li= button_to cached_search.filename, load_cached_searches_path(:path => cached_search.path), :class => 'btn btn-outline-primary'
