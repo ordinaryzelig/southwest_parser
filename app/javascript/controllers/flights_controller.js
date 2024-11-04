@@ -58,7 +58,7 @@ export default class extends Controller {
 
   failsMaxPoints(flight) {
     if(this.maxPointsTarget.value) {
-      if(!flight.fare) return true;
+      if(!flight.fare || !flight.fare.points) return true;
       return flight.fare.points / 1000 > this.maxPointsTarget.value;
     }
   }
