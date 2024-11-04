@@ -21,11 +21,21 @@ class CachedSearch
   def load
     json = JSON.load(@path.read)
     parsed_flights = Search::Parser.parse_all(json)
-    Search::Persister.new(parsed_flights).call
+    Search::Persister.new(parsed_flights, self).call
   end
 
   def route
-    filename.to_s.split('|')[1]
+    @route ||= Route.from_string(filename_parts[1])
+  end
+
+  def dep_on
+    @dep_on ||= filename_parts[2]
+  end
+
+private
+
+  def filename_parts
+    filename.to_s.split('|')
   end
 
 end

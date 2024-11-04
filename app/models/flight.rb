@@ -4,6 +4,7 @@ class Flight < ApplicationRecord
 
   scope :route, -> (route) { where(route.to_h) }
   scope :dep_date, -> (date) { where("DATE(dep_at) = ?", date) }
+  scope :available, -> { where(:expired_at => nil) }
 
   attr_accessor :duration_weight_percent
   attr_accessor :points_percent

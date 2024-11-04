@@ -35,6 +35,10 @@ class Search
     @currency = Currency.new(c)
   end
 
+  def route
+    @route ||= Route.new(@dep, @arr)
+  end
+
  private
 
   def make_request
@@ -50,7 +54,7 @@ class Search
   end
 
   def persist
-    @persister = Search::Persister.new(@parsed_flights)
+    @persister = Search::Persister.new(@parsed_flights, self)
     @persister.call
   end
 

@@ -2,14 +2,16 @@ class Search::Persister
 
   attr_reader :flight_ids
 
-  def initialize(parsed_flights)
+  def initialize(parsed_flights, search)
     @parsed_flights = parsed_flights
-    @flight_ids = []
+    @search         = search
+    @flight_ids     = []
   end
 
   def call
     Flight.transaction do
       upsert_flights
+      expire_flights
       upsert_fares
     end
   end
@@ -30,13 +32,22 @@ private
       @flights_upsert_res =
         Flight.upsert(
           flight_atts,
-          :returning         => :id,
-          :unique_by         => %i[dep arr dep_at arr_at],
-          :record_timestamps => true,
+          :returning => :id,
+          :unique_by => %i[dep arr dep_at arr_at],
         )
       flight_id = @flights_upsert_res.first.fetch('id')
       parsed_flight.flight_id = flight_id
     end
+  end
+
+  # Can't use `updated_at`, because if nothing changes about the flight, then
+  # updated_at is untouched.
+  def expire_flights
+    Flight
+      .route(@search.route)
+      .dep_date(@search.dep_on)
+      .where.not(:id => @parsed_flights.filter_map(&:flight_id))
+      .touch_all(:expired_at)
   end
 
   def upsert_fares
@@ -64,8 +75,7 @@ private
       end
       res = Fare.upsert(
         fare_atts,
-        :unique_by         => :flight_id,
-        :record_timestamps => true,
+        :unique_by => :flight_id,
       )
     end
   end

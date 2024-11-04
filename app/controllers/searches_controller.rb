@@ -21,6 +21,7 @@ class SearchesController < ApplicationController
     @route = Route.from_string(params[:id])
     @flights =
       Flight
+        .available
         .route(@route)
         .includes(:fare)
     @calcs = FlightsCalculations.new(@flights).tap(&:call)
