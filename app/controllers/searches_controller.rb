@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
     @search = Search.new(
       :dep      => @route.dep,
       :arr      => @route.arr,
-      :dep_on   => params.fetch(:date, Date.new(2024, 10, 24)).to_date,
+      :dep_on   => params.fetch(:date, Date.today).to_date,
       :currency => :points,
     )
   end
@@ -56,7 +56,7 @@ private
   end
 
   def set_route_from_param
-    @route = Route.from_string(params[:route] || 'OKC-LGA')
+    @route = Route.from_string(params[:route] || 'OKC-HOU')
   end
 
   def set_filter_settings
