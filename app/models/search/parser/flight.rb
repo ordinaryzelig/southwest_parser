@@ -31,7 +31,7 @@ class Search::Parser::Flight
   end
 
   def num_stops
-    flight_numbers.size - 1
+    segments.size - 1 + segments.sum(&:num_stops)
   end
 
   def layover_airports
@@ -41,10 +41,6 @@ class Search::Parser::Flight
       else
         []
       end
-  end
-
-  def flight_numbers
-    @flight_numbers ||= @json.fetch('flightNumbers')
   end
 
   def duration

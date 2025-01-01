@@ -8,4 +8,8 @@ class Search::Parser::Segment
     @json.fetch('destinationAirportCode')
   end
 
+  def num_stops
+    @json.fetch('numberOfStops')
+  end
+
 end
