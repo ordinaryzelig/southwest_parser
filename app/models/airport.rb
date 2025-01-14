@@ -4,6 +4,7 @@ class Airport
     'HOU' => 'Central Time (US & Canada)',
     'LGA' => 'Eastern Time (US & Canada)',
     'OKC' => 'Central Time (US & Canada)',
+    'BNA' => 'Central Time (US & Canada)',
   }
 
   def initialize(code)
