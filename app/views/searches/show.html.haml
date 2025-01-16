@@ -37,6 +37,13 @@
           .btn-group
             = link_to 'Refresh', [:new, :search, :route => @route, :date => date], :class => 'btn btn-outline-primary'
             = button_to 'Delete', [:searches, :route => @route, :date => date], :method => :delete, :class => 'btn btn-outline-danger', :data => {:turbo_confirm => 'Sure?'}
+
+          %br
+
+          - cached_searches = CachedSearch.where(:route => @route, :date => date)
+          - last_updated = cached_searches.last&.created_on&.to_date
+          Updated #{last_updated}
+
           - @flights.group_by { |f| f.dep_at.to_date }.fetch(date).each do |flight|
             %div[flight]{:data => {:flights_target => 'flight', :id => flight.id}, :style => "left: #{flight.offset_duration_percent}%; width: #{flight.duration_percent}%"}
               .d-flex.justify-content-between
