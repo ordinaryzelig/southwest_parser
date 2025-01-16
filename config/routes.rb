@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root :to => 'searches#new'
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :searches, :only => %i[new create show] do
