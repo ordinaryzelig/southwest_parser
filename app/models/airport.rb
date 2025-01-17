@@ -1,10 +1,11 @@
 class Airport
 
   TIMEZONES = {
+    'BNA' => 'Central Time (US & Canada)',
     'HOU' => 'Central Time (US & Canada)',
     'LGA' => 'Eastern Time (US & Canada)',
+    'MDW' => 'Central Time (US & Canada)',
     'OKC' => 'Central Time (US & Canada)',
-    'BNA' => 'Central Time (US & Canada)',
   }
 
   def initialize(code)
