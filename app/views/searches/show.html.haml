@@ -1,5 +1,9 @@
 %h1= @route
 
+= link_to @route.reverse
+
+.mt-3
+
 .flights{:data => {:controller => 'flights', :flights_flights_data_value => @flights.index_by(&:id).to_json(:include => [:fare], :methods => [:dep_at_hour, :arr_at_hour])}}
 
   - selectable_dates = @flights.map(&:dep_at).map(&:to_date).uniq.sort

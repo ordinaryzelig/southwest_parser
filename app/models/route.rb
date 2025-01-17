@@ -27,4 +27,8 @@ class Route
     "#{dep}-#{arr}"
   end
 
+  def reverse
+    Route.new(arr, dep)
+  end
+
 end
