@@ -43,11 +43,13 @@ class FlightsCalculations
   end
 
   def duration_average
-    @flights.map(&:duration).sum / @flights.size / 60
+    flights = @flights.select(&:duration)
+    flights.map(&:duration).sum / flights.size / 60
   end
 
   def points_average
-    (@flights.filter_map { |f| f.fare&.points }.sum / @flights.size).round
+    flights = @flights.select { |f| f.fare&.points }
+    (flights.map { |f| f.fare.points }.sum / flights.size).round
   end
 
 private
