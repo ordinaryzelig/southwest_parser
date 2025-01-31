@@ -57,7 +57,7 @@ private
   def calculate(percent_attr, &block)
     all = @flights.filter_map(&block)
     min, max = all.min, all.max
-    hundred = max - min
+    hundred = [max - min, 1].max
     @flights.each do |flight|
       flight_val = block.call(flight)
       if flight_val
