@@ -3,11 +3,14 @@ class SearchesController < ApplicationController
   before_action :set_route_from_param, :only => %i[new destroy]
 
   def new
+    last_cached_search = CachedSearch.last
+    pre_fill_route = @route || last_cached_search&.route
+    pre_fill_date  = (params[:date] || last_cached_search&.dep_on || Date.today).to_date
     @search = Search.new(
-      :dep      => @route.dep,
-      :arr      => @route.arr,
-      :dep_on   => params.fetch(:date, Date.today).to_date,
-      :currency => :points,
+      :dep      => pre_fill_route&.dep,
+      :arr      => pre_fill_route&.arr,
+      :dep_on   => pre_fill_date,
+      :currency => last_cached_search&.currency || :points,
     )
   end
 
@@ -56,7 +59,7 @@ private
   end
 
   def set_route_from_param
-    @route = Route.from_string(params[:route] || 'OKC-HOU')
+    @route = Route.from_string(params[:route]) if params[:route]
   end
 
   def set_filter_settings
