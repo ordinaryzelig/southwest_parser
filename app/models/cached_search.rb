@@ -6,6 +6,12 @@ class CachedSearch
       Dir.glob(Rails.root + "log/searches/*|#{route}|#{date.presence || '*'}|*").map(&method(:new))
     end
 
+    def save(search_request)
+      json = JSON.pretty_generate(JSON.parse(search_request.response.body))
+      path = "log/searches/#{Time.now}|#{search_request.dep}-#{search_request.arr}|#{search_request.dep_on}|#{search_request.currency}.json"
+      File.open(Rails.root + path, 'w') { |f| f.write json }
+    end
+
   end
 
   attr_reader :path

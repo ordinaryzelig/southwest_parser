@@ -1,6 +1,10 @@
 class Search::Request
 
   attr_reader :response
+  attr_reader :dep
+  attr_reader :arr
+  attr_reader :dep_on
+  attr_reader :currency
 
   def initialize(dep, arr, dep_on, currency)
     @dep      = dep
@@ -21,8 +25,7 @@ class Search::Request
 private
 
   def log_response
-    json = JSON.pretty_generate(JSON.parse(@response.body))
-    File.open(Rails.root + "log/searches/#{Time.now}|#{@dep}-#{@arr}|#{@dep_on}|#{@currency}.json", 'w') { |f| f.write json }
+    CachedSearch.save(self)
   end
 
   URL = 'https://www.southwest.com/api/air-booking/v1/air-booking/page/air/booking/shopping'
