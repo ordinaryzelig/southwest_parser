@@ -6,6 +6,7 @@ class Airport
     'LGA' => 'Eastern Time (US & Canada)',
     'MDW' => 'Central Time (US & Canada)',
     'OKC' => 'Central Time (US & Canada)',
+    'SAN' => 'Pacific Time (US & Canada)',
   }
 
   def initialize(code)
