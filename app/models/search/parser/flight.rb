@@ -48,12 +48,7 @@ class Search::Parser::Flight
   end
 
   def fare
-    @fare ||= Search::Parser::Fare.new(
-      @json
-        .fetch('fareProducts')
-        .fetch('ADULT')
-        .then { |n| n['WGA'] || n['WGARED'] }
-      )
+    @fare ||= Search::Parser::Fare.parse_from_flight(@json)
   end
 
   def ident

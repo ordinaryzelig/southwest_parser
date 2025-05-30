@@ -53,6 +53,7 @@ private
   def upsert_fares
     @parsed_flights.each do |parsed_flight|
       parsed_fare = parsed_flight.fare
+      next unless parsed_fare
       fare_atts = {
         :flight_id => parsed_flight.flight_id,
         :available => parsed_fare.available?,
