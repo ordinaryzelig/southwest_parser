@@ -27,8 +27,14 @@ class SearchesController < ApplicationController
         .available
         .route(@route)
         .includes(:fare)
-    @calcs = FlightsCalculations.new(@flights).tap(&:call)
-    set_filter_settings
+    if @flights.any?
+      @calcs = FlightsCalculations.new(@flights).tap(&:call)
+      set_filter_settings
+    else
+      redirect_to new_search_path(
+        :route => @route,
+      )
+    end
   end
 
   def destroy
