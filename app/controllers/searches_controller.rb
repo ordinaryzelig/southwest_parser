@@ -35,6 +35,8 @@ class SearchesController < ApplicationController
         :route => @route,
       )
     end
+
+    @page_title = @route.to_s
   end
 
   def destroy
