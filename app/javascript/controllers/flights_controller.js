@@ -18,6 +18,7 @@ export default class extends Controller {
     "flight", // Multiple.
     "depDate", // Multiple.
     "dateCol", // Multiple.
+    "layover", // Multiple.
   ]
 
   connect() {
@@ -25,6 +26,9 @@ export default class extends Controller {
   }
 
   filterFlights() {
+
+    this.unselectedLayovers = this.getUnselectedLayovers();
+
     this.flightTargets.forEach(flightEle => {
       var flight = this.flightData(flightEle);
       flightEle.hidden = this.failsFilters(flight);
@@ -54,6 +58,7 @@ export default class extends Controller {
     if(this.failsMaxDuration(flight)) return true;
     if(this.failsDepDate(flight))     return true;
     if(this.failsStops(flight))       return true;
+    if(this.failsLayovers(flight))    return true;
   }
 
   failsMaxPoints(flight) {
@@ -105,12 +110,30 @@ export default class extends Controller {
     }
   }
 
+  failsLayovers(flight) {
+    for (const layover of flight.layover_airports.split(',')) {
+      if(this.unselectedLayovers.includes(layover)) {
+        return true;
+      }
+    }
+  }
+
   initTooltips() {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipOptions = {
       html: true,
     }
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, tooltipOptions))
+  }
+
+  getUnselectedLayovers() {
+    const unselected = [];
+    this.layoverTargets.forEach(target => {
+      if (!target.checked) {
+        unselected.push(target.value);
+      }
+    });
+    return unselected;
   }
 
 }

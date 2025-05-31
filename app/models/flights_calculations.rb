@@ -52,6 +52,10 @@ class FlightsCalculations
     (flights.map { |f| f.fare.points }.sum / flights.size).round
   end
 
+  def layovers
+    @layovers ||= @flights.flat_map(&:layover_airports).uniq
+  end
+
 private
 
   def calculate(percent_attr, &block)

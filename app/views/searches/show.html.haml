@@ -31,6 +31,13 @@
       - %i[min max].each do |min_max|
         = label_tag "#{min_max}_#{dep_arr}_at", min_max
         = number_field_tag "#{min_max}_#{dep_arr}_at", @filter_settings.fetch(dep_arr).fetch(min_max), :data => {:flights_target => [min_max, dep_arr, 'at'].join('_').camelize(:lower), :action => 'flights#filterFlights'}, **@filter_settings.fetch(dep_arr)
+  .mb-3
+    Layovers
+    - @filter_settings.fetch(:layovers).each do |layover|
+      .form-check
+        - name = "layover_#{layover}"
+        = check_box_tag name, layover, :checked => true, :class => 'form-check-input', :data => {:action => 'flights#filterFlights', :flights_target => 'layover'}
+        = label_tag name, layover, :class => 'form-check-label'
 
   .results
     .row
